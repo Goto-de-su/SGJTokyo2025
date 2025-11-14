@@ -697,7 +697,15 @@ MonoBehaviour:
     m_Id: f0db8816-23aa-4c6d-9fac-76ea82c32a15
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 3937eccd-6da2-411c-a306-3f2e487bbb66
+      m_Path: <Keyboard>/f
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Action OK
+      m_Flags: 0
     m_Flags: 0
   _actionNG:
     m_Name: Action NG
@@ -706,7 +714,15 @@ MonoBehaviour:
     m_Id: 58776d28-3f0b-4641-8339-085de6cf423d
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 756d1fc0-1579-4350-936d-082c78186b6c
+      m_Path: <Keyboard>/space
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Action NG
+      m_Flags: 0
     m_Flags: 0
 --- !u!4 &1873480242
 Transform:
