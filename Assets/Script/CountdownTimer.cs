@@ -1,48 +1,38 @@
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;   // << ?????
+﻿using UnityEngine;
+using TMPro;  // 用 TextMeshProUGUI
 
-public class CountdownTimer : MonoBehaviour
+public class CountdownManager : MonoBehaviour
 {
-    [Header("UI ??")]
-    public TextMeshProUGUI timerText;   // ?? 00:00 ????TMP ???
-    public GameObject gameOverImage; // ?? GameOver ????GameOverImage?
-    public GameObject startButton;   // ?????????????
-
-    [Header("????")]
-    public float startTime = 60f;    // ?????????? 60 = 01:00
+    public float gameTime = 300f;               // 总时间（秒），现在是 300 = 5 分钟
+    public TextMeshProUGUI timerText;           // 你的 TimerText（05:00）
+    public GameObject gameOverPanel;            // 我们待会儿把 GameOverImage 拖进来
 
     private float currentTime;
-    private bool isRunning = false;
+    private bool isGameOver = false;
 
     private void Start()
     {
-        // ?????
-        currentTime = startTime;
+        currentTime = gameTime;
         UpdateTimerText();
 
-        // ????? GameOver ??
-        if (gameOverImage != null)
+        // 一开始先把 GameOver 图片隐藏起来
+        if (gameOverPanel != null)
         {
-            gameOverImage.SetActive(false);
+            gameOverPanel.SetActive(false);
         }
     }
 
     private void Update()
     {
-        if (!isRunning)
-        {
-            return;
-        }
+        if (isGameOver) return; // 已经 GameOver 就别再减时间了
 
         currentTime -= Time.deltaTime;
 
         if (currentTime <= 0f)
         {
             currentTime = 0f;
-            isRunning = false;
             UpdateTimerText();
-            ShowGameOver();
+            OnTimeUp();  // 时间到
         }
         else
         {
@@ -50,46 +40,26 @@ public class CountdownTimer : MonoBehaviour
         }
     }
 
-    // ????? 00:00 ??
     private void UpdateTimerText()
     {
-        int totalSeconds = Mathf.CeilToInt(currentTime);
-        if (totalSeconds < 0) totalSeconds = 0;
+        if (timerText == null) return;
 
-        int minutes = totalSeconds / 60;
-        int seconds = totalSeconds % 60;
-
-        if (timerText != null)
-        {
-            timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-        }
+        int minutes = Mathf.FloorToInt(currentTime / 60f);
+        int seconds = Mathf.FloorToInt(currentTime % 60f);
+        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds); // 05:00 这种格式
     }
 
-    // ?? GameOver ??
-    private void ShowGameOver()
+    private void OnTimeUp()
     {
-        if (gameOverImage != null)
-        {
-            gameOverImage.SetActive(true);
-        }
-    }
+        isGameOver = true;
 
-    // ??�????�?????
-    public void StartTimer()
-    {
-        currentTime = startTime;    // ?????????
-        isRunning = true;
-
-        // ?????? GameOver ?????????????
-        if (gameOverImage != null)
+        // 显示 GameOver 图片
+        if (gameOverPanel != null)
         {
-            gameOverImage.SetActive(false);
+            gameOverPanel.SetActive(true);
         }
 
-        // ???????????????
-        if (startButton != null)
-        {
-            startButton.SetActive(false);
-        }
+        // 如果你想时间停止（比如暂停玩家动作），可以加上一句：
+        // Time.timeScale = 0f;
     }
 }
