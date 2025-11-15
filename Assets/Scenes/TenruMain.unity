@@ -499,11 +499,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c816c5c333b123468ab7e8cae1f72c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Play: {fileID: 0}
-  Exp: {fileID: 0}
-  Relax: {fileID: 0}
-  Anger: {fileID: 0}
-  Poop: {fileID: 0}
+  PLAY: 0
+  EXP: 0
+  RELAX: 0
+  POOP: 0
+  ANGER: 0
+  movie_changer: {fileID: 0}
+  streak_controller: {fileID: 0}
 --- !u!4 &272320216
 Transform:
   m_ObjectHideFlags: 0
@@ -1543,11 +1545,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c816c5c333b123468ab7e8cae1f72c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Play: {fileID: 0}
-  Exp: {fileID: 0}
-  Relax: {fileID: 0}
-  Anger: {fileID: 0}
-  Poop: {fileID: 0}
+  PLAY: 0
+  EXP: 0
+  RELAX: 0
+  POOP: 0
+  ANGER: 0
+  movie_changer: {fileID: 0}
+  streak_controller: {fileID: 0}
 --- !u!1 &1253002399
 GameObject:
   m_ObjectHideFlags: 0
@@ -1592,11 +1596,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c816c5c333b123468ab7e8cae1f72c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Play: {fileID: 0}
-  Exp: {fileID: 0}
-  Relax: {fileID: 0}
-  Anger: {fileID: 0}
-  Poop: {fileID: 0}
+  PLAY: 0
+  EXP: 0
+  RELAX: 0
+  POOP: 0
+  ANGER: 0
+  movie_changer: {fileID: 0}
+  streak_controller: {fileID: 0}
 --- !u!1 &1318674079
 GameObject:
   m_ObjectHideFlags: 0
@@ -2484,8 +2490,7 @@ MonoBehaviour:
   gaugePrefab: {fileID: 6148250830005408949, guid: 8cdba05472c68fe4f9d6fda1e629ab09, type: 3}
   numberOfGauges: 3
   gaugeSpacing: 160
-  full1: 0.5
-  full2: 1
+  emotionControler: {fileID: 272320215}
 --- !u!1 &2086337523
 GameObject:
   m_ObjectHideFlags: 0
