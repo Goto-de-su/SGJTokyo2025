@@ -8,26 +8,6 @@ public class CursorController : MonoBehaviour
 
     [SerializeField] private float OFFSET;
 
-    private int current_x = 0;
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.A))
-        {
-            current_x--;
-            if(current_x < 0)
-            {
-                current_x = 2;
-            }
-        }
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            current_x = (current_x + 1) % 3;
-        }
-
-        UpdateCursor(current_x, 0);
-    }
-
     public void UpdateCursor(int anchor_idx, int cursor_idx)
     {
         Vector3 pos = anchor[anchor_idx].transform.position;
