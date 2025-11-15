@@ -6,11 +6,26 @@ public class ItemBoxDisplay : MonoBehaviour
     [Tooltip("アイテムボックスのスプライトレンダラー")]
     [SerializeField] private Image image;
 
-    /// <summary>
-    /// アイテムボックスにアイテム表示
-    /// </summary>
     public void DisplayItem(ItemData inputData)
     {
-        this.image.sprite = inputData.icon;
+        if (inputData != null && inputData.icon != null)
+        {
+            this.image.sprite = inputData.icon;
+            this.image.enabled = true; // 画像を表示
+        }
+        else
+        {
+            // データがnullなら非表示
+            ClearDisplay();
+        }
+    }
+
+    /// <summary>
+    /// 表示をクリア（非表示に）
+    /// </summary>
+    public void ClearDisplay()
+    {
+        this.image.sprite = null;
+        this.image.enabled = false; // 画像を非表示
     }
 }

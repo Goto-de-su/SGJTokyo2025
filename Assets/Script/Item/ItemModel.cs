@@ -6,33 +6,24 @@ public class ItemModel : MonoBehaviour
     [Tooltip("抽選するデータ")]
     [SerializeField] private List<ItemData> srcData;
 
-    /// <summary>
-    /// 現在のアイテム
-    /// </summary>
-    private ItemData nowItem;
-    public ItemData NowItem => nowItem;
-
-    /// <summary>
-    /// アイテムをスポーン
-    /// </summary>
-    public void SpownRandomItem()
+    public ItemData GetRandomItem()
     {
-        // データが格納されていない場合はスポーンしない
+        // データが格納されていない場合はnullを返す
         if (this.srcData.Count == 0)
         {
-            return;
+            return null;
         }
 
-        // 乱数で生成したアイテムを保持
+        // 乱数で生成したアイテムを返す
         int randomIndex = Random.Range(0, this.srcData.Count);
-        nowItem = srcData[randomIndex];
+        return srcData[randomIndex];
     }
 
     /// <summary>
-    /// アイテムを使用
+    /// アイテムを使用 (実際の効果をここに書く)
     /// </summary>
-    public void UseItem()
+    public void UseItem(ItemData itemToUse)
     {
-
+        
     }
 }

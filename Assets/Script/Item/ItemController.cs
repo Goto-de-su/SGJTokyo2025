@@ -1,51 +1,125 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class ItemController : MonoBehaviour
 {
     [Header("Module")]
-    [SerializeField] private ItemModel ItemModel;
+    [SerializeField] private ItemModel itemModel;
 
     [Header("View")]
-    [SerializeField] private ItemBoxDisplay itemBoxDisplay;
+    [Tooltip("アイテム表示スロット（左から順に3つ設定）")]
+    [SerializeField] private List<ItemBoxDisplay> itemBoxDisplays;
+
+    [Header("Settings")]
+    [Tooltip("アイテムの所持枠の数")]
+    [SerializeField] private int itemBoxSize = 3;
+
+    // 現在所持しているアイテムのキュー（リスト）
+    private List<ItemData> currentItems = new List<ItemData>();
+
+    private void Start()
+    {
+        // ゲーム開始時に所持枠の数だけアイテムを初期化
+        InitializeItemBox();
+    }
 
     private void OnEnable()
     {
-        // InputManagerが発火するイベントを購読する
+        // (省略... InputModuleの購読はそのまま)
         InputModule.OnOKPressed += UseItem;
         InputModule.OnNGPressed += ClearItem;
     }
 
     private void OnDisable()
     {
-        // 忘れずに購読を解除する
+        // (省略... 購読解除はそのまま)
         InputModule.OnOKPressed -= UseItem;
         InputModule.OnNGPressed -= ClearItem;
     }
 
     /// <summary>
-    /// アイテムを使用
+    /// 最初にアイテムボックスを埋める
+    /// </summary>
+    private void InitializeItemBox()
+    {
+        currentItems.Clear();
+        for (int i = 0; i < itemBoxSize; i++)
+        {
+            // 新しいアイテムを抽選してリストの「最後」に追加
+            currentItems.Add(itemModel.GetRandomItem());
+        }
+
+        // UIを更新
+        UpdateAllDisplays();
+    }
+
+    /// <summary>
+    /// 一番左のアイテムを使用
     /// </summary>
     public void UseItem()
     {
-        ItemModel.UseItem();
+        if (currentItems.Count == 0) return; // アイテムがなければ何もしない
+
+        // 1. 実際のアイテム使用ロジックを呼ぶ (一番左のアイテム)
+        itemModel.UseItem(currentItems[0]);
+
+        // 2. アイテムを変更（左詰め＆補充）
         this.ChangeItem();
     }
 
     /// <summary>
-    /// アイテムを使用せずスキップ
+    /// アイテムを使用せずスキップ（一番左を破棄）
     /// </summary>
     public void ClearItem()
     {
+        if (currentItems.Count == 0) return;
+
+        // アイテムを変更（左詰め＆補充）
         this.ChangeItem();
     }
 
-
     /// <summary>
-    /// アイテム変更
+    /// アイテム変更（左詰めにして、一番右に補充）
     /// </summary>
     public void ChangeItem()
     {
-        ItemModel.SpownRandomItem();
-        itemBoxDisplay.DisplayItem(ItemModel.NowItem);
+        if (currentItems.Count == 0)
+        {
+            // もし空なら、初期化を試みる
+            InitializeItemBox();
+            return;
+        }
+
+        // 1. 一番左(インデックス0)のアイテムを削除
+        //    -> これで自動的にリストが左詰めされます
+        currentItems.RemoveAt(0);
+
+        // 2. 新しいアイテムを抽選してリストの「最後」に追加
+        currentItems.Add(itemModel.GetRandomItem());
+
+        // 3. UIの表示をすべて更新
+        UpdateAllDisplays();
+    }
+
+    /// <summary>
+    /// currentItemsリストの内容を、すべてのUIスロットに反映
+    /// </summary>
+    private void UpdateAllDisplays()
+    {
+        // 3つの表示スロットを順番に処理
+        for (int i = 0; i < itemBoxDisplays.Count; i++)
+        {
+            // currentItemsに表示すべきアイテムがあるか？
+            if (i < currentItems.Count)
+            {
+                // あれば表示
+                itemBoxDisplays[i].DisplayItem(currentItems[i]);
+            }
+            else
+            {
+                // なければクリア
+                itemBoxDisplays[i].ClearDisplay();
+            }
+        }
     }
 }
