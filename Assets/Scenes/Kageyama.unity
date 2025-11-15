@@ -790,6 +790,7 @@ GameObject:
   - component: {fileID: 1814440678}
   - component: {fileID: 1814440677}
   - component: {fileID: 1814440679}
+  - component: {fileID: 1814440680}
   m_Layer: 0
   m_Name: Emotion
   m_TagString: Untagged
@@ -809,11 +810,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c816c5c333b123468ab7e8cae1f72c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Play: {fileID: 11400000, guid: b24b759dd4b18624bb3214e91050c439, type: 2}
-  Exp: {fileID: 11400000, guid: 22e09471b1de5e9439a6079ff0d27cd1, type: 2}
-  Relax: {fileID: 11400000, guid: 530c60c5990b8ed45af81aff1b499908, type: 2}
-  Anger: {fileID: 11400000, guid: fa621ed987aaaea44b892f0c5cb3d7e5, type: 2}
-  Poop: {fileID: 11400000, guid: 9139c911191fa28449e56708f1f35f8b, type: 2}
 --- !u!4 &1814440678
 Transform:
   m_ObjectHideFlags: 0
@@ -842,6 +838,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   emotion_controler: {fileID: 1814440677}
+  Play: {fileID: 11400000, guid: b24b759dd4b18624bb3214e91050c439, type: 2}
+  Exp: {fileID: 11400000, guid: 22e09471b1de5e9439a6079ff0d27cd1, type: 2}
+  Relax: {fileID: 11400000, guid: 530c60c5990b8ed45af81aff1b499908, type: 2}
+  Anger: {fileID: 11400000, guid: fa621ed987aaaea44b892f0c5cb3d7e5, type: 2}
+  Poop: {fileID: 11400000, guid: 9139c911191fa28449e56708f1f35f8b, type: 2}
+--- !u!114 &1814440680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1814440676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbdf5a2a1e3175943ac68571f967ebae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  emotion_controller: {fileID: 1814440677}
+  movie_changer: {fileID: 1814440679}
+  thresholds: 020000000400000006000000
+  streak_increment: 2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

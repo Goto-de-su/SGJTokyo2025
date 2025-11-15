@@ -1,6 +1,5 @@
 using Unity.Mathematics;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.Video;
 
 public class MovieController : MonoBehaviour
@@ -11,7 +10,6 @@ public class MovieController : MonoBehaviour
 
     private void Start()
     {
-        GetComponent<SpriteRenderer>().enabled = true;
         Player = GetComponent<VideoPlayer>();
         gameObject.transform.localScale = new Vector3(aspect.x / aspect.y * scale, scale, 1);
         Player.Prepare();
@@ -21,6 +19,7 @@ public class MovieController : MonoBehaviour
 
     private void OnEndPrepare(VideoPlayer player)
     {
+        GetComponent<SpriteRenderer>().enabled = true;
         Player.Play();
     }
 }
