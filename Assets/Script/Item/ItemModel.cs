@@ -27,5 +27,6 @@ public class ItemModel : MonoBehaviour
     {
         GameManager gameManager = GameManager.Instance;
         gameManager.Players[playerId].EmotionController.UpdateEmotion(itemToUse.motivationValue);
+
     }
 }

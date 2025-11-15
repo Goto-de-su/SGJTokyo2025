@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class FullnessGauge : MonoBehaviour
 {
+    // ( ... Start() や SpawnGauges() など、他の部分はそのまま ... )
+
     [Header("ゲージの設定")]
     [SerializeField]
     private GameObject gaugePrefab; // 満腹ゲージのプレハブ
@@ -35,29 +37,18 @@ public class FullnessGauge : MonoBehaviour
 
     void SpawnGauges()
     {
-        // このスクリプトがアタッチされているオブジェクトがコンテナ(入れ物)になる
+        // (省略... 元のコードと同じ)
         RectTransform containerRect = GetComponent<RectTransform>();
-
         for (int i = 0; i < numberOfGauges; i++)
         {
-            // プレハブをインスタンス化(生成)
-            // (i * gaugeSpacing) で右側にずらして配置する
             Vector3 spawnPos = new Vector3(i * gaugeSpacing, 0, 0);
-
-            // this.transform (コンテナ) の子として生成
             GameObject gaugeInstance = Instantiate(gaugePrefab, this.transform);
-
-            // UIの位置はlocalPositionで設定
             gaugeInstance.GetComponent<RectTransform>().localPosition = spawnPos;
-
-            // プレハブの構造が「親」->「子」であることを前提に、
-            // 0番目の子(GaugeFill)のImageコンポーネントを取得
             Image fillImage = gaugeInstance.transform.GetChild(0).GetComponent<Image>();
-
             if (fillImage != null)
             {
-                fillImages.Add(fillImage); // リストに追加
-                fillImage.fillAmount = 0; // 初期状態は0
+                fillImages.Add(fillImage);
+                fillImage.fillAmount = 0;
             }
         }
     }
@@ -77,8 +68,14 @@ public class FullnessGauge : MonoBehaviour
         }
     }
 
-    /// ゲージのステップを1つ進める
-    void IncrementSteps(int stepsToAdd)
+
+    // --- ▼▼▼ ここを修正 ▼▼▼ ---
+
+    /// <summary>
+    /// ゲージのステップを指定した量だけ進める
+    /// </summary>
+    /// <param name="stepsToAdd">追加するステップ数 (1=半分, 2=1つ)</param>
+    public void IncrementSteps(int stepsToAdd)
     {
         // 1. ゲージが満タンの時にキーが押されたか？
         if (currentStep == maxSteps)
@@ -94,41 +91,41 @@ public class FullnessGauge : MonoBehaviour
             // 3. ステップを追加した結果、maxStepsを超えたか？
             if (currentStep > maxSteps)
             {
-                // 0にリセットする
+                // 【変更点】maxStepsで止めるのではなく、0にリセットする
                 currentStep = 0;
             }
+            // (注意: ちょうど currentStep == maxSteps になった場合は、
+            //  ここではリセットされず、次回のキー入力で 1. の条件に合致してリセットされます)
         }
 
         // 見た目を更新
         UpdateGaugeVisuals();
     }
 
+    // --- ▲▲▲ ここまで修正 ▲▲▲ ---
+
+
+    /// <summary>
     /// 現在のcurrentStepに基づいて、すべてのゲージの見た目を更新する
+    /// </summary>
     void UpdateGaugeVisuals()
     {
-        // fillImagesリストにあるすべてのゲージをチェック
+        // (省略... 元のコードと同じ)
         for (int i = 0; i < fillImages.Count; i++)
         {
             Image gaugeImage = fillImages[i];
-
-            // このゲージが担当するステップ数を計算
-            // 0番目のゲージ -> 0 (空), 1 (半分), 2 (全部)
-            // 1番目のゲージ -> 2 (空), 3 (半分), 4 (全部)
             int stepsForThisGauge = i * 2;
 
             if (currentStep <= stepsForThisGauge)
             {
-                // 現在ステップがこのゲージの開始前なら 0%
                 gaugeImage.fillAmount = 0f;
             }
             else if (currentStep == stepsForThisGauge + 1)
             {
-                // 現在ステップがこのゲージの 1ステップ目 (半分) なら 50%
                 gaugeImage.fillAmount = full1;
             }
-            else // currentStep >= stepsForThisGauge + 2
+            else
             {
-                // 現在ステップがこのゲージの 2ステップ目以降 (全部) なら 100%
                 gaugeImage.fillAmount = full2;
             }
         }
