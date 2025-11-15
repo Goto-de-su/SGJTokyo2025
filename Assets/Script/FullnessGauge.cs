@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 
 public class FullnessGauge : MonoBehaviour
 {
-    // ( ... Start() や SpawnGauges() など、他の部分はそのまま ... )
-
     [Header("ゲージの設定")]
     [SerializeField]
     private GameObject gaugePrefab; // 満腹ゲージのプレハブ
@@ -17,14 +16,15 @@ public class FullnessGauge : MonoBehaviour
     [SerializeField]
     private float gaugeSpacing = 160f; // ゲージを配置する間隔
 
-    [SerializeField] private float full1 = 0.5f;  // 半分
-    [SerializeField] private float full2 = 1.0f;  // 1増える
-
+    private float full1 = 0.5f;  // 半分
+    private float full2 = 1.0f;  // 1増える
 
     // ---- 内部管理用 ----
     private List<Image> fillImages = new List<Image>(); // 子のFillImageだけを格納
     private int currentStep = 0; // 現在のフィルステップ (0 = 空)
     private int maxSteps; // 最大ステップ数 (ゲージ数 * 2)
+
+    private bool isCoolTime = false;
 
     void Start()
     {
@@ -53,61 +53,43 @@ public class FullnessGauge : MonoBehaviour
         }
     }
 
-    void Update()
-    {
-        // Aキー (半分 = 1ステップ)
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            IncrementSteps(1); // 1ステップ進める
-        }
-
-        // Dキー (1つ = 2ステップ)
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            IncrementSteps(2); // 2ステップ進める
-        }
-    }
-
-
-    // --- ▼▼▼ ここを修正 ▼▼▼ ---
-
-    /// <summary>
-    /// ゲージのステップを指定した量だけ進める
-    /// </summary>
-    /// <param name="stepsToAdd">追加するステップ数 (1=半分, 2=1つ)</param>
     public void IncrementSteps(int stepsToAdd)
     {
-        // 1. ゲージが満タンの時にキーが押されたか？
+        if (isCoolTime)
+        {
+            return;
+        }
+
+        bool didReset = false;
+
         if (currentStep == maxSteps)
         {
-            // 最大なら0にリセット (赤色が全部消える)
             currentStep = 0;
+            didReset = true;
         }
-        else // 2. ゲージが満タンではない時
+        else
         {
             // ステップを進める
             currentStep += stepsToAdd;
 
-            // 3. ステップを追加した結果、maxStepsを超えたか？
             if (currentStep > maxSteps)
             {
-                // 【変更点】maxStepsで止めるのではなく、0にリセットする
+                // 最大値を超えた -> リセット
                 currentStep = 0;
+                didReset = true;
             }
-            // (注意: ちょうど currentStep == maxSteps になった場合は、
-            //  ここではリセットされず、次回のキー入力で 1. の条件に合致してリセットされます)
         }
 
-        // 見た目を更新
+        // 3. ゲージの見た目を更新 (リセットされても、されてなくても)
         UpdateGaugeVisuals();
+
+        // 4. もしリセットが発生していたら、クールタイムコルーチンを開始
+        if (didReset)
+        {
+            StartCoroutine(PoopAction());
+        }
     }
 
-    // --- ▲▲▲ ここまで修正 ▲▲▲ ---
-
-
-    /// <summary>
-    /// 現在のcurrentStepに基づいて、すべてのゲージの見た目を更新する
-    /// </summary>
     void UpdateGaugeVisuals()
     {
         // (省略... 元のコードと同じ)
@@ -129,5 +111,21 @@ public class FullnessGauge : MonoBehaviour
                 gaugeImage.fillAmount = full2;
             }
         }
+    }
+
+    private IEnumerator PoopAction()
+    {
+        // 1. クールタイム開始（フラグを立てる）
+        isCoolTime = true;
+
+        Debug.Log("うんち（クールタイム開始）");
+
+        // 2. 3秒待つ
+        yield return new WaitForSeconds(3.0f);
+
+        // 3. クールタイム終了（フラグを下ろす）
+        isCoolTime = false;
+        Debug.Log("クールタイム終了");
+
     }
 }

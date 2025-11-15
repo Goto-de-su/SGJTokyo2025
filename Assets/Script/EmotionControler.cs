@@ -11,8 +11,6 @@ public enum EMOTION
     Poop
 }
 
-
-
 public class EmotionControler : MonoBehaviour
 {
     private EMOTION emotion = new EMOTION();
