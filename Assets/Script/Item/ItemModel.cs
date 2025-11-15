@@ -22,8 +22,10 @@ public class ItemModel : MonoBehaviour
     /// <summary>
     /// アイテムを使用 (実際の効果をここに書く)
     /// </summary>
-    public void UseItem(ItemData itemToUse)
+    [System.Obsolete]
+    public void UseItem(ItemData itemToUse, int playerId)
     {
-        
+        GameManager gameManager = GameManager.Instance;
+        gameManager.Players[playerId].EmotionController.UpdateEmotion(itemToUse.motivationValue);
     }
 }
