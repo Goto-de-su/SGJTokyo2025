@@ -7,7 +7,7 @@ public class ItemController : MonoBehaviour
     [SerializeField] private ItemModel itemModel;
 
     [Header("View")]
-    [Tooltip("アイテム表示スロット（左から順に3つ設定）")]
+    [Tooltip("アイテム侮ｦスロット（左から順に3つ設定）")]
     [SerializeField] private List<ItemBoxDisplay> itemBoxDisplays;
 
     [Header("Settings")]
