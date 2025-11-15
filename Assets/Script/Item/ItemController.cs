@@ -15,6 +15,9 @@ public class ItemController : MonoBehaviour
     [Tooltip("アイテムの所持枠の数")]
     [SerializeField] private int itemBoxSize = 3;
 
+    [Header("Gauges")]
+    [SerializeField] private FullnessGauge fullnessGauge;
+
     /// <summary>
     /// アイテムの初期選択プレイヤー
     /// </summary>
@@ -71,14 +74,40 @@ public class ItemController : MonoBehaviour
     [System.Obsolete]
     public void UseItem()
     {
-        if (currentItems.Count == 0) return; // アイテムがなければ何もしない
+        if (currentItems.Count == 0) return;
 
-        // 1. 実際のアイテム使用ロジックを呼ぶ (一番左のアイテム)
-        itemModel.UseItem(currentItems[0], selectedPlayer);
+        // 1. 使用するアイテムのデータを取得
+        ItemData itemToUse = currentItems[0];
 
-        // 2. アイテムを変更（左詰め＆補充）
+        // 2. 実際のアイテム使用ロジックを呼ぶ (EmotionControllerなど)
+        itemModel.UseItem(itemToUse, selectedPlayer);
+
+        // 3. 満腹ゲージを増やす処理 (ClearItemから移動)
+        if (itemToUse != null)
+        {
+            int value = itemToUse.foodValue;
+
+            if (value == 1)
+            {
+                if (fullnessGauge != null)
+                {
+                    fullnessGauge.IncrementSteps(1);
+                }
+            }
+
+            if (value == 2)
+            {
+                if (fullnessGauge != null)
+                {
+                    fullnessGauge.IncrementSteps(2);
+                }
+            }
+        }
+
+        // 4. アイテムを変更（左詰め＆補充）
         this.ChangeItem();
     }
+
 
     /// <summary>
     /// アイテムを使用せずスキップ（一番左を破棄）
@@ -87,7 +116,7 @@ public class ItemController : MonoBehaviour
     {
         if (currentItems.Count == 0) return;
 
-        // アイテムを変更（左詰め＆補充）
+       
         this.ChangeItem();
     }
 
