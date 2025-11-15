@@ -26,6 +26,8 @@ public class FullnessGauge : MonoBehaviour
 
     private bool isCoolTime = false;
 
+    [SerializeField] private EmotionControler emotionControler; 
+
     void Start()
     {
         // 最大ステップ数を計算 (ゲージ1つにつき2ステップ)
@@ -117,6 +119,8 @@ public class FullnessGauge : MonoBehaviour
     {
         // 1. クールタイム開始（フラグを立てる）
         isCoolTime = true;
+
+        emotionControler.Full();
 
         Debug.Log("うんち（クールタイム開始）");
 

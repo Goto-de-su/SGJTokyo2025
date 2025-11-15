@@ -50,8 +50,9 @@ public class EmotionControler : MonoBehaviour
         OnItemUsed?.Invoke(amount);
     }
 
-    private void Full()
+    public void Full()
     {
+        Debug.Log("Ç§ÇÒÇøèÛë‘");
         GetStateMachine().ChangeState(Emotion_Poop.instance, this);
     }
 
