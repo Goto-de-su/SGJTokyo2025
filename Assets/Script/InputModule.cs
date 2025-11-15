@@ -1,14 +1,23 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System;
+using System.Collections.Generic;
 
 public class InputModule : MonoBehaviour
 {
+    [Header("操作ボタン")]
     [SerializeField] private InputAction _actionOK;
     [SerializeField] private InputAction _actionNG;
+    [SerializeField] private InputAction _actionRight;
+    [SerializeField] private InputAction _actionLeft;
 
-    public static event Action OnOKPressed;
-    public static event Action OnNGPressed;
+    /// <summary>
+    /// ボタン押下イベント
+    /// </summary>
+    public event Action OnOKPressed;
+    public event Action OnNGPressed;
+    public event Action OnRightPressed;
+    public event Action OnLeftPressed;
 
     // 有効化
     private void OnEnable()
@@ -41,5 +50,15 @@ public class InputModule : MonoBehaviour
     private void OnPerformedNG(InputAction.CallbackContext context)
     {
         OnNGPressed.Invoke();
+    }
+
+    private void OnPerformRight(InputAction.CallbackContext context)
+    {
+        OnRightPressed.Invoke();
+    }
+
+    private void OnPerformLeft(InputAction.CallbackContext context)
+    {
+        OnLeftPressed.Invoke();
     }
 }

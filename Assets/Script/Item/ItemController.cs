@@ -5,6 +5,7 @@ public class ItemController : MonoBehaviour
 {
     [Header("Module")]
     [SerializeField] private ItemModel itemModel;
+    [SerializeField] private InputModule inputModel;
 
     [Header("View")]
     [Tooltip("アイテム表示スロット（左から順に3つ設定）")]
@@ -14,27 +15,38 @@ public class ItemController : MonoBehaviour
     [Tooltip("アイテムの所持枠の数")]
     [SerializeField] private int itemBoxSize = 3;
 
+    /// <summary>
+    /// アイテムの初期選択プレイヤー
+    /// </summary>
+    [SerializeField] private int playerId;
+
     // 現在所持しているアイテムのキュー（リスト）
     private List<ItemData> currentItems = new List<ItemData>();
+
+    /// <summary>
+    /// アイテムの効果先
+    /// </summary>
+    private int selectedPlayer;
 
     private void Start()
     {
         // ゲーム開始時に所持枠の数だけアイテムを初期化
         InitializeItemBox();
+        this.selectedPlayer = this.playerId;
     }
 
     private void OnEnable()
     {
         // (省略... InputModuleの購読はそのまま)
-        InputModule.OnOKPressed += UseItem;
-        InputModule.OnNGPressed += ClearItem;
+        inputModel.OnOKPressed += UseItem;
+        inputModel.OnNGPressed += ClearItem;
     }
 
     private void OnDisable()
     {
         // (省略... 購読解除はそのまま)
-        InputModule.OnOKPressed -= UseItem;
-        InputModule.OnNGPressed -= ClearItem;
+        inputModel.OnOKPressed -= UseItem;
+        inputModel.OnNGPressed -= ClearItem;
     }
 
     /// <summary>
@@ -56,12 +68,13 @@ public class ItemController : MonoBehaviour
     /// <summary>
     /// 一番左のアイテムを使用
     /// </summary>
+    [System.Obsolete]
     public void UseItem()
     {
         if (currentItems.Count == 0) return; // アイテムがなければ何もしない
 
         // 1. 実際のアイテム使用ロジックを呼ぶ (一番左のアイテム)
-        itemModel.UseItem(currentItems[0]);
+        itemModel.UseItem(currentItems[0], selectedPlayer);
 
         // 2. アイテムを変更（左詰め＆補充）
         this.ChangeItem();
