@@ -810,6 +810,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c816c5c333b123468ab7e8cae1f72c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PLAY: 5
+  EXP: 1
+  RELAX: 1
+  POOP: -3
+  ANGER: -1
+  movie_changer: {fileID: 1814440679}
+  streak_controller: {fileID: 1814440680}
 --- !u!4 &1814440678
 Transform:
   m_ObjectHideFlags: 0
@@ -859,6 +866,7 @@ MonoBehaviour:
   movie_changer: {fileID: 1814440679}
   thresholds: 020000000400000006000000
   streak_increment: 2
+  play_threshold: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

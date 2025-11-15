@@ -12,9 +12,13 @@ public class MovieController : MonoBehaviour
     {
         Player = GetComponent<VideoPlayer>();
         gameObject.transform.localScale = new Vector3(aspect.x / aspect.y * scale, scale, 1);
+
+        AudioSource audio = GetComponent<AudioSource>();
+        Player.audioOutputMode = VideoAudioOutputMode.AudioSource;
+        Player.SetTargetAudioSource(0, audio);
+
         Player.Prepare();
         Player.prepareCompleted += OnEndPrepare;
-
     }
 
     private void OnEndPrepare(VideoPlayer player)
