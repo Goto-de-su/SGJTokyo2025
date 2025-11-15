@@ -36,6 +36,9 @@ public class GaugeController : MonoBehaviour
             currentDislike = Mathf.Clamp01(currentDislike);
             // ゲージのUIに反映
             dislikeImage.fillAmount = currentDislike;
+
+            // dislikeImageを一番手前に描画する
+            dislikeImage.transform.SetAsLastSibling();
         }
 
         // --- 2キー（怒り）: 右から増える ---
@@ -47,10 +50,12 @@ public class GaugeController : MonoBehaviour
             currentAngry = Mathf.Clamp01(currentAngry);
             // ゲージのUIに反映
             angryImage.fillAmount = currentAngry;
+
+            // angryImageを一番手前に描画する
+            angryImage.transform.SetAsLastSibling();
         }
 
-        // --- 3キー（幸せ）: 左から増える ---
-        // (ご提示のコードでは1キーになっていましたが、おそらく3キーかと思います)
+        // --- 3キー（幸せ）: 右から増える ---
         if (Input.GetKey(KeyCode.Alpha3))
         {
             // currentHappyの値を増やす
@@ -59,6 +64,8 @@ public class GaugeController : MonoBehaviour
             currentHappy = Mathf.Clamp01(currentHappy);
             // ゲージのUIに反映
             happyImage.fillAmount = currentHappy;
+
+            happyImage.transform.SetAsLastSibling();
         }
     }
 }
