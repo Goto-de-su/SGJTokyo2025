@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
 using TMPro;  // 用 TextMeshProUGUI
-
+using UnityEngine.SceneManagement;  // ★ 新增：为了 LoadScene
 public class CountdownManager : MonoBehaviour
 {
-    public float gameTime = 300f;               // 总时间（秒），现在是 300 = 5 分钟
-    public TextMeshProUGUI timerText;           // 你的 TimerText（05:00）
-    public GameObject gameOverPanel;            // 我们待会儿把 GameOverImage 拖进来
+    public float gameTime = 300f;               // 总时间（秒）
+    public TextMeshProUGUI timerText;           // 05:00 的文本
+    public GameObject gameOverPanel;            // 如果你还想在本场景里弹出一张图，可以用它
+    public string gameOverSceneName = "GameOver";  // ★ 新增：GameOver 场景的名字
 
     private float currentTime;
     private bool isGameOver = false;
@@ -15,7 +16,6 @@ public class CountdownManager : MonoBehaviour
         currentTime = gameTime;
         UpdateTimerText();
 
-        // 一开始先把 GameOver 图片隐藏起来
         if (gameOverPanel != null)
         {
             gameOverPanel.SetActive(false);
@@ -24,7 +24,7 @@ public class CountdownManager : MonoBehaviour
 
     private void Update()
     {
-        if (isGameOver) return; // 已经 GameOver 就别再减时间了
+        if (isGameOver) return;
 
         currentTime -= Time.deltaTime;
 
@@ -32,7 +32,7 @@ public class CountdownManager : MonoBehaviour
         {
             currentTime = 0f;
             UpdateTimerText();
-            OnTimeUp();  // 时间到
+            OnTimeUp();
         }
         else
         {
@@ -46,20 +46,22 @@ public class CountdownManager : MonoBehaviour
 
         int minutes = Mathf.FloorToInt(currentTime / 60f);
         int seconds = Mathf.FloorToInt(currentTime % 60f);
-        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds); // 05:00 这种格式
+        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 
     private void OnTimeUp()
     {
         isGameOver = true;
 
-        // 显示 GameOver 图片
+        // 如果你想在当前场景先显示一下 GameOver 图片，可以保留这几行
         if (gameOverPanel != null)
         {
             gameOverPanel.SetActive(true);
         }
 
-        // 如果你想时间停止（比如暂停玩家动作），可以加上一句：
-        // Time.timeScale = 0f;
+        // ★ 关键：加载 GameOver 场景
+        SceneManager.LoadScene(gameOverSceneName);
+
+        // 如果之前用了 Time.timeScale = 0f; 记得在 GameOver 场景 Start 里改回 1f
     }
 }
