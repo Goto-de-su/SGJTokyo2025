@@ -25,9 +25,13 @@ public class InputModule : MonoBehaviour
         // Actionのコールバックを登録
         _actionOK.performed += OnPerformedOK;
         _actionNG.performed += OnPerformedNG;
+        _actionRight.performed += OnPerformRight;
+        _actionLeft.performed += OnPerformLeft;
         // InputActionを有効化
         _actionOK?.Enable();
         _actionNG?.Enable();
+        _actionRight?.Enable();
+        _actionLeft?.Enable();
     }
 
     // 無効化
@@ -36,9 +40,13 @@ public class InputModule : MonoBehaviour
         // Actionのコールバックを解除
         _actionOK.performed -= OnPerformedOK;
         _actionNG.performed -= OnPerformedNG;
+        _actionRight.performed -= OnPerformRight;
+        _actionLeft.performed -= OnPerformLeft;
         // Actionを無効化する必要がある
         _actionOK?.Disable();
         _actionNG?.Disable();
+        _actionRight?.Disable();
+        _actionLeft?.Disable();
     }
 
     // コールバックを受け取ったときの処理
@@ -59,6 +67,7 @@ public class InputModule : MonoBehaviour
 
     private void OnPerformLeft(InputAction.CallbackContext context)
     {
+        Debug.Log("左ボタンが押されました");
         OnLeftPressed.Invoke();
     }
 }

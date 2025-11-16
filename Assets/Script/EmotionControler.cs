@@ -23,6 +23,8 @@ public class EmotionControler : MonoBehaviour
     [SerializeField] public MovieChanger movie_changer;
     [SerializeField] public StreakController streak_controller;
 
+    [SerializeField] public GameObject poopObject;
+
 
     private int motivaion = 0;
     private EMOTION emotion = new EMOTION();
@@ -36,6 +38,9 @@ public class EmotionControler : MonoBehaviour
         movie_changer.OnLoop += OnLoop;
         emotion = EMOTION.RELAX;
         state.ChangeState(Emotion_Relax.instance, this);
+
+        // ウンチ画像を非表示
+        this.poopObject.SetActive(false);
     }
 
     public EMOTION GetEmotion() { return emotion; }
@@ -54,22 +59,9 @@ public class EmotionControler : MonoBehaviour
     {
         Debug.Log("うんち状態");
         GetStateMachine().ChangeState(Emotion_Poop.instance, this);
-    }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            UpdateEmotion(1);
-        }
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            UpdateEmotion(-1);
-        }
-        if(Input.GetKeyDown(KeyCode.P))
-        {
-            Full();
-        }
+        // ウンチ画像を表示
+        this.poopObject.SetActive(true);
     }
 }
 
@@ -98,6 +90,7 @@ public class Emotion_Relax : IEmotion
         controler.SetEmotion(EMOTION.RELAX);
         controler.UpdateMotivation(controler.RELAX);
         controler.movie_changer.ChangeMovie();
+        controler.poopObject.SetActive(false);
 
         controler.OnLoop = () =>
         {
@@ -128,6 +121,7 @@ public class Emotion_Exp : IEmotion
         controler.SetEmotion(EMOTION.EXP);
         controler.UpdateMotivation(controler.EXP);
         controler.movie_changer.ChangeMovie();
+        controler.poopObject.SetActive(false);
 
         controler.streak_controller.OnPlay = () =>
         {
@@ -161,6 +155,7 @@ public class Emotion_Anger : IEmotion
         controler.SetEmotion(EMOTION.ANGER);
         controler.UpdateMotivation(controler.ANGER);
         controler.movie_changer.ChangeMovie();
+        controler.poopObject.SetActive(false);
 
         controler.OnLoop = () =>
         {
@@ -191,6 +186,7 @@ public class Emotion_Play : IEmotion
         controler.SetEmotion(EMOTION.PLAY);
         controler.UpdateMotivation(controler.PLAY);
         controler.movie_changer.ChangeMovie();
+        controler.poopObject.SetActive(false);
 
         controler.OnLoop = () =>
         {
@@ -211,6 +207,7 @@ public class Emotion_Poop : IEmotion
 
         controler.OnLoop = () =>
         {
+            controler.poopObject.SetActive(false);
             controler.GetStateMachine().ChangeState(Emotion_Relax.instance, controler);
             return;
         };

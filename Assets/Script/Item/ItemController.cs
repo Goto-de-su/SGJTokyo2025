@@ -38,11 +38,18 @@ public class ItemController : MonoBehaviour
         this.selectedPlayer = this.playerId;
     }
 
+    private void Update()
+    {
+        Debug.Log("選択プレイヤー:" + selectedPlayer);
+    }
+
     private void OnEnable()
     {
         // (省略... InputModuleの購読はそのまま)
         inputModel.OnOKPressed += UseItem;
         inputModel.OnNGPressed += ClearItem;
+        inputModel.OnRightPressed += SelectRight;
+        inputModel.OnLeftPressed += SelectLeft;
     }
 
     private void OnDisable()
@@ -50,6 +57,8 @@ public class ItemController : MonoBehaviour
         // (省略... 購読解除はそのまま)
         inputModel.OnOKPressed -= UseItem;
         inputModel.OnNGPressed -= ClearItem;
+        inputModel.OnRightPressed += SelectRight;
+        inputModel.OnLeftPressed += SelectLeft;
     }
 
     /// <summary>
@@ -163,5 +172,33 @@ public class ItemController : MonoBehaviour
                 itemBoxDisplays[i].ClearDisplay();
             }
         }
+    }
+
+    /// <summary>
+    /// アイテム使用先のカーソル制御(右)
+    /// </summary>
+    private void SelectRight()
+    {
+        playerId++;
+        if(playerId >= 3)
+        {
+            playerId = 0;
+        }
+
+        Debug.Log("選択中のプレイヤー：" + playerId);
+    }
+
+    /// <summary>
+    /// アイテム使用先のカーソル制御(左)
+    /// </summary>
+    private void SelectLeft()
+    {
+        playerId--;
+        if (playerId <= 0)
+        {
+            playerId = 2;
+        }
+
+        Debug.Log("選択中のプレイヤー：" + playerId);
     }
 }
