@@ -44,9 +44,10 @@ public class CountdownManager : MonoBehaviour
     {
         if (timerText == null) return;
 
+        // currentTime (例: 59.5f) から「分」を計算 (例: 0)
         int minutes = Mathf.FloorToInt(currentTime / 60f);
         int seconds = Mathf.FloorToInt(currentTime % 60f);
-        timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        timerText.text = string.Format("{0:00}:{1:00}", minutes , seconds);
     }
 
     private void OnTimeUp()
