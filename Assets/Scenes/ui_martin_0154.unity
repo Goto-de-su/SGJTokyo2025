@@ -650,6 +650,7 @@ MonoBehaviour:
   gameTime: 300
   timerText: {fileID: 0}
   gameOverPanel: {fileID: 0}
+  gameOverSceneName: GameOver
 --- !u!4 &682194704
 Transform:
   m_ObjectHideFlags: 0
