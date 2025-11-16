@@ -15,7 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/TitleScene.unity
     guid: 303089fec9165324798419075fec5976
   - enabled: 1
-    path: Assets/Scenes/ui_martin_0154.unity
+    path: Assets/Scenes/Opition.unity
     guid: d00926fb453dcf745b2340a66fefc60e
   - enabled: 1
     path: Assets/Scenes/Goto.unity
@@ -23,6 +23,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/game_over.unity
     guid: aae65d4dabee6974298183bd313cf19b
+  - enabled: 1
+    path: Assets/Scenes/TenruTimer.unity
+    guid: 9ecf55fdad5cd09489d2ff5cf09153c8
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
