@@ -23,7 +23,7 @@ public class SceneButton : MonoBehaviour
         if (clickSound != null)
         {
             clickSound.Play();
-            yield return new WaitForSeconds(clickSound.clip.length);
+            yield return new WaitForSeconds(0.3f);
         }
         SceneManager.LoadScene(sceneName);
     }
