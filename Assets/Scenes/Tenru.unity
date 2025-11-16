@@ -166,8 +166,7 @@ MonoBehaviour:
   gaugePrefab: {fileID: 6148250830005408949, guid: 8cdba05472c68fe4f9d6fda1e629ab09, type: 3}
   numberOfGauges: 3
   gaugeSpacing: 160
-  full1: 0.5
-  full2: 1
+  emotionControler: {fileID: 0}
 --- !u!1 &422579639
 GameObject:
   m_ObjectHideFlags: 0
@@ -695,12 +694,14 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1787925206}
   - {fileID: 291816582}
-  - {fileID: 2126923177}
   - {fileID: 1368635425}
   - {fileID: 804537445}
   - {fileID: 422579640}
   - {fileID: 1860008053}
+  - {fileID: 654091117}
+  - {fileID: 1039704859}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1837,7 +1838,7 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1787925205}
+  m_GameObject: {fileID: 1767879451}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -1856,7 +1857,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1787925205}
+  m_GameObject: {fileID: 1767879451}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -1886,7 +1887,7 @@ CanvasRenderer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1787925205}
+  m_GameObject: {fileID: 1767879451}
   m_CullTransparentMesh: 1
 --- !u!1 &1860008052
 GameObject:
@@ -2120,19 +2121,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2119997566}
   m_CullTransparentMesh: 1
---- !u!114 &2126923181
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2126923176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f58bf449c0b05f24ab7a16bfacd2d100, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneName: Main
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
