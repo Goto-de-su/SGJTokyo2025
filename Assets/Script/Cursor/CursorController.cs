@@ -8,24 +8,58 @@ public class CursorController : MonoBehaviour
 
     [SerializeField] private float OFFSET;
 
-    private int current_x = 0;
+    private int p1 = 0;
+    private int p2 = 0;
+    private int p3 = 0;
 
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.A))
         {
-            current_x--;
-            if(current_x < 0)
+            if(p1 != 0)
             {
-                current_x = 2;
+                p1--;
             }
         }
         if (Input.GetKeyDown(KeyCode.D))
         {
-            current_x = (current_x + 1) % 3;
+            if (p1 != 2)
+            {
+                p1++;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            if (p2 != 0)
+            {
+                p2--;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            if (p2 != 2)
+            {
+                p2++;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            if (p3 != 0)
+            {
+                p3--;
+            }
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            if (p3 != 2)
+            {
+                p3++;
+            }
         }
 
-        UpdateCursor(current_x, 0);
+        UpdateCursor(p1, 0);
+        UpdateCursor(p2, 1);
+        UpdateCursor(p3, 2);
     }
 
     public void UpdateCursor(int anchor_idx, int cursor_idx)

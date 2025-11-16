@@ -16,18 +16,11 @@ public class MovieChanger : MonoBehaviour
     [SerializeField] private MoviePool Anger;
     [SerializeField] private MoviePool Poop;
 
+    [SerializeField] private RenderTexture renderTexture;
+
     private void Start()
     {
         ChangeMovie();
-        current_movie.GetComponent<VideoPlayer>().loopPointReached += OnMovieEnd;
-    }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
-            ChangeMovie();
-        }
     }
 
     public void ChangeMovie()
@@ -36,6 +29,8 @@ public class MovieChanger : MonoBehaviour
         if (current_movie != null)
         Destroy(current_movie);
         current_movie = Instantiate(newClip, transform.position, Quaternion.identity, transform.parent);
+        current_movie.GetComponent<VideoPlayer>().loopPointReached += OnMovieEnd;
+        current_movie.GetComponent<VideoPlayer>().targetTexture = renderTexture;
         OnChange?.Invoke();
     }
 
@@ -44,15 +39,15 @@ public class MovieChanger : MonoBehaviour
     {
         switch (emo)
         {
-            case EMOTION.Play:
+            case EMOTION.PLAY:
                 return Play.GetClip();
-            case EMOTION.Exp:
+            case EMOTION.EXP:
                 return Exp.GetClip();
-            case EMOTION.Relax:
+            case EMOTION.RELAX:
                 return Relax.GetClip();
-            case EMOTION.Anger:
+            case EMOTION.ANGER:
                 return Anger.GetClip();
-            case EMOTION.Poop:
+            case EMOTION.POOP:
                 return Poop.GetClip();
         }
         return null;

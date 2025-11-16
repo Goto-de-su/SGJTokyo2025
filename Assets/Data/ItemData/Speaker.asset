@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Speaker
   m_EditorClassIdentifier: 
   item: 4
-  icon: {fileID: 8512330258150442420, guid: 666496bfe659b4e4aaebc53cc19bd1a5, type: 3}
+  icon: {fileID: -8430858057600849251, guid: 666496bfe659b4e4aaebc53cc19bd1a5, type: 3}
   motivationValue: 1
+  foodValue: 0

@@ -15,3 +15,4 @@ MonoBehaviour:
   item: 5
   icon: {fileID: -4838361849222123955, guid: 030081b13d404614c91be90b313e398f, type: 3}
   motivationValue: 1
+  foodValue: 0

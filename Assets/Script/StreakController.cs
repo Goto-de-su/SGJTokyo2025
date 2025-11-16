@@ -1,3 +1,4 @@
+using System;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.Video;
@@ -10,6 +11,10 @@ public class StreakController : MonoBehaviour
     [SerializeField] private int[] thresholds;
     [SerializeField] private int streak_increment;
 
+    [SerializeField] private int play_threshold;
+
+    [HideInInspector] public Action OnPlay;
+
     private int current_streak = 0;
     private int current_emotion_up = 1;
 
@@ -21,9 +26,14 @@ public class StreakController : MonoBehaviour
 
     private void OnMovieEnd()
     {
-        if (emotion_controller.GetEmotion() == EMOTION.Exp)
+        if (emotion_controller.GetEmotion() == EMOTION.EXP)
         {
             current_streak++;
+
+            if (current_streak == play_threshold)
+            {
+                OnPlay?.Invoke();
+            }
 
             int inc = 0;
 
@@ -35,7 +45,7 @@ public class StreakController : MonoBehaviour
                 }
             }
 
-            emotion_controller.UpdateEmotion(current_emotion_up + inc);
+            emotion_controller.UpdateMotivation(current_emotion_up + inc);
         }
     }
 
