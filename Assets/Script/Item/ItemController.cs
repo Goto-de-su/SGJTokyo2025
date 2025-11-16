@@ -30,7 +30,7 @@ public class ItemController : MonoBehaviour
     {
         this.playerId = id;
         this.selectedPlayer = this.playerId;
-        DisplayCursor();
+        DisplayCursor(selectedPlayer, playerId);
     }
 
     /// <summary>
@@ -55,8 +55,9 @@ public class ItemController : MonoBehaviour
         // (省略... InputModuleの購読はそのまま)
         inputModel.OnOKPressed += UseItem;
         inputModel.OnNGPressed += ClearItem;
-        inputModel.OnRightPressed += SelectRight;
-        inputModel.OnLeftPressed += SelectLeft;
+        // なぜか反転しているため、反転
+        inputModel.OnRightPressed += SelectLeft;
+        inputModel.OnLeftPressed += SelectRight;
     }
 
     private void OnDisable()
@@ -64,8 +65,9 @@ public class ItemController : MonoBehaviour
         // (省略... 購読解除はそのまま)
         inputModel.OnOKPressed -= UseItem;
         inputModel.OnNGPressed -= ClearItem;
-        inputModel.OnRightPressed += SelectRight;
-        inputModel.OnLeftPressed += SelectLeft;
+        // なぜか反転しているため、反転
+        inputModel.OnRightPressed += SelectLeft;
+        inputModel.OnLeftPressed += SelectRight;
     }
 
     /// <summary>
@@ -193,11 +195,11 @@ public class ItemController : MonoBehaviour
         Debug.Log("操作プレイヤー:" + playerId + ", 選択プレイヤー:" + selectedPlayer);
         if (selectedPlayer > 2)
         {
-            playerId = 0;
+            selectedPlayer = 0;
         }
         Debug.Log("変更後");
         Debug.Log("操作プレイヤー:" + playerId + ", 選択プレイヤー:" + selectedPlayer);
-        DisplayCursor();
+        DisplayCursor(selectedPlayer, playerId);
     }
 
     /// <summary>
@@ -216,12 +218,12 @@ public class ItemController : MonoBehaviour
         }
         Debug.Log("変更後");
         Debug.Log("操作プレイヤー:" + playerId + ", 選択プレイヤー:" + selectedPlayer);
-        DisplayCursor();
+        DisplayCursor(selectedPlayer, playerId);
     }
 
-    private void DisplayCursor()
+    private void DisplayCursor(int target, int me)
     {
         //Debug.Log("操作プレイヤー:" + playerId + ", 選択プレイヤー:" + selectedPlayer);
-        cursorController.UpdateCursor(selectedPlayer, playerId);
+        cursorController.UpdateCursor(target, me);
     }
 }
