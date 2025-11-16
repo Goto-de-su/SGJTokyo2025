@@ -16,6 +16,8 @@ public class MovieChanger : MonoBehaviour
     [SerializeField] private MoviePool Anger;
     [SerializeField] private MoviePool Poop;
 
+    [SerializeField] private RenderTexture renderTexture;
+
     private void Start()
     {
         ChangeMovie();
@@ -28,6 +30,7 @@ public class MovieChanger : MonoBehaviour
         Destroy(current_movie);
         current_movie = Instantiate(newClip, transform.position, Quaternion.identity, transform.parent);
         current_movie.GetComponent<VideoPlayer>().loopPointReached += OnMovieEnd;
+        current_movie.GetComponent<VideoPlayer>().targetTexture = renderTexture;
         OnChange?.Invoke();
     }
 

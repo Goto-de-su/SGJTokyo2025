@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Play
   m_EditorClassIdentifier: 
   screen:
-  - {fileID: 1603748388309293728, guid: 3700e3919dc539e48a3a07b4b2313376, type: 3}
-  - {fileID: 910020296097867292, guid: 3a4ed27e9d3dbce49b469671dfa293ff, type: 3}
+  - {fileID: 8395890764301025140, guid: 294ec10afa51b054aa189e6f3495f450, type: 3}
+  - {fileID: 8430862617294906818, guid: 2847fdb1bc8f51c4fac7746965f4c89f, type: 3}
+  - {fileID: 2954918881521994319, guid: 8b0329866dfc87b4cb27cb5ce326d3e3, type: 3}
