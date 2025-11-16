@@ -689,7 +689,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 317010468468323505, guid: 7d4040438b4f92543813c15815aef9d8, type: 3}
+  m_Sprite: {fileID: 1673926411311220469, guid: 6cf6afc1660790e4b8945e60c923d2d3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1071,6 +1071,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneName: TenruTimer
+  clickSound: {fileID: 0}
 --- !u!114 &2026817805
 MonoBehaviour:
   m_ObjectHideFlags: 0
