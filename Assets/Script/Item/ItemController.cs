@@ -11,6 +11,9 @@ public class ItemController : MonoBehaviour
     [Tooltip("アイテム侮ｦスロット（左から順に3つ設定）")]
     [SerializeField] private List<ItemBoxDisplay> itemBoxDisplays;
 
+    [Header("Controller")]
+    [SerializeField] private CursorController cursorController;
+
     [Header("Settings")]
     [Tooltip("アイテムの所持枠の数")]
     [SerializeField] private int itemBoxSize = 3;
@@ -18,13 +21,17 @@ public class ItemController : MonoBehaviour
     [Header("Gauges")]
     [SerializeField] private FullnessGauge fullnessGauge;
 
-    /// <summary>
-    /// アイテムの初期選択プレイヤー
-    /// </summary>
-    [SerializeField] private int playerId;
+    private int playerId;
 
     // 現在所持しているアイテムのキュー（リスト）
     private List<ItemData> currentItems = new List<ItemData>();
+
+    public void SetPlayerId(int id)
+    {
+        this.playerId = id;
+        this.selectedPlayer = this.playerId;
+        DisplayCursor();
+    }
 
     /// <summary>
     /// アイテムの効果先
@@ -35,13 +42,13 @@ public class ItemController : MonoBehaviour
     {
         // ゲーム開始時に所持枠の数だけアイテムを初期化
         InitializeItemBox();
-        this.selectedPlayer = this.playerId;
+        //cursorController.UpdateCursor(0, this.selectedPlayer);
     }
 
-    private void Update()
-    {
-        Debug.Log("選択プレイヤー:" + selectedPlayer);
-    }
+    //private void Update()
+    //{
+    //    Debug.Log("操作プレイヤー:" + playerId + ", 選択プレイヤー:" + selectedPlayer);
+    //}
 
     private void OnEnable()
     {
@@ -179,13 +186,18 @@ public class ItemController : MonoBehaviour
     /// </summary>
     private void SelectRight()
     {
-        playerId++;
-        if(playerId >= 3)
+        Debug.Log("変更前");
+        Debug.Log("操作プレイヤー:" + playerId + ", 選択プレイヤー:" + selectedPlayer);
+        selectedPlayer++;
+        Debug.Log("計算後");
+        Debug.Log("操作プレイヤー:" + playerId + ", 選択プレイヤー:" + selectedPlayer);
+        if (selectedPlayer > 2)
         {
             playerId = 0;
         }
-
-        Debug.Log("選択中のプレイヤー：" + playerId);
+        Debug.Log("変更後");
+        Debug.Log("操作プレイヤー:" + playerId + ", 選択プレイヤー:" + selectedPlayer);
+        DisplayCursor();
     }
 
     /// <summary>
@@ -193,12 +205,23 @@ public class ItemController : MonoBehaviour
     /// </summary>
     private void SelectLeft()
     {
-        playerId--;
-        if (playerId <= 0)
+        Debug.Log("変更前");
+        Debug.Log("操作プレイヤー:" + playerId + ", 選択プレイヤー:" + selectedPlayer);
+        selectedPlayer--;
+        Debug.Log("計算後");
+        Debug.Log("操作プレイヤー:" + playerId + ", 選択プレイヤー:" + selectedPlayer);
+        if (selectedPlayer < 0)
         {
-            playerId = 2;
+            selectedPlayer = 2;
         }
+        Debug.Log("変更後");
+        Debug.Log("操作プレイヤー:" + playerId + ", 選択プレイヤー:" + selectedPlayer);
+        DisplayCursor();
+    }
 
-        Debug.Log("選択中のプレイヤー：" + playerId);
+    private void DisplayCursor()
+    {
+        //Debug.Log("操作プレイヤー:" + playerId + ", 選択プレイヤー:" + selectedPlayer);
+        cursorController.UpdateCursor(selectedPlayer, playerId);
     }
 }

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Relax
   m_EditorClassIdentifier: 
   screen:
-  - {fileID: 1547052795111445850, guid: fc8f9f8a247858b43b6d72ef39253514, type: 3}
-  - {fileID: 6267862396445353636, guid: b7c76a1d26cf50d4eb3b6a612c78c8d0, type: 3}
+  - {fileID: 1402911835797354073, guid: d0c19f734dfdee244ad9f367223272d4, type: 3}
+  - {fileID: 7671840451949447480, guid: 476e1c01648830b4a8c44f38c68333c3, type: 3}
