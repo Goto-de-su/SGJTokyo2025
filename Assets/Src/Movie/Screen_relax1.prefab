@@ -141,7 +141,7 @@ MonoBehaviour:
   aspect:
     x: 9
     y: 16
-  scale: 10
+  scale: 5
 --- !u!82 &3712520124546892540
 AudioSource:
   m_ObjectHideFlags: 0
