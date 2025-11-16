@@ -8,12 +8,18 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Tenru.unity
     guid: a8e649373c9f1cb4fbc1c446f45b02ec
   - enabled: 1
+    path: Assets/Scenes/TitleScene.unity
+    guid: 303089fec9165324798419075fec5976
+  - enabled: 1
     path: Assets/Scenes/ui_martin_0154.unity
     guid: d00926fb453dcf745b2340a66fefc60e
+  - enabled: 1
+    path: Assets/Scenes/Goto.unity
+    guid: 17ae17784e42960479d215444cf107a4
   - enabled: 1
     path: Assets/Scenes/game_over.unity
     guid: aae65d4dabee6974298183bd313cf19b

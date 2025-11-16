@@ -876,7 +876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4fde1b813a70db4aaf999c995a6e1c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameSceneName: GameScene
+  gameSceneName: Goto
 --- !u!114 &567166318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1329,8 +1329,7 @@ MonoBehaviour:
   gaugePrefab: {fileID: 6148250830005408949, guid: 8cdba05472c68fe4f9d6fda1e629ab09, type: 3}
   numberOfGauges: 3
   gaugeSpacing: 160
-  full1: 0.5
-  full2: 1
+  emotionControler: {fileID: 0}
 --- !u!1 &1082680594
 GameObject:
   m_ObjectHideFlags: 0
