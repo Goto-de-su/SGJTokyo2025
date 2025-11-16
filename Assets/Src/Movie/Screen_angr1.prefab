@@ -141,7 +141,9 @@ MonoBehaviour:
   aspect:
     x: 9
     y: 16
-  scale: 5
+  scale: 10
+  rawImage: {fileID: 0}
+  renderTex: {fileID: 0}
 --- !u!82 &-3350552663117087123
 AudioSource:
   m_ObjectHideFlags: 0

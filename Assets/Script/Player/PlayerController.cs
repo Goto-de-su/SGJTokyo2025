@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     [Header("コントローラー")]
     [SerializeField] private InputModule inputModule;
 
+
     public ItemController ItemController => itemController;
 
     public EmotionControler EmotionController => emotionController;
@@ -16,10 +17,16 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// プレイヤー番号
     /// </summary>
-    private int id;
+    [Header("プレイヤーID")]
+    [SerializeField] private int id;
 
     public PlayerController(int number)
     {
         this.id = number;
+    }
+
+    public void Start()
+    {
+        itemController.SetPlayerId(id);
     }
 }

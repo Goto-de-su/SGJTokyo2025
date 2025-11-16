@@ -221,9 +221,9 @@ MonoBehaviour:
   - {fileID: 620614121}
   - {fileID: 1698148832}
   - {fileID: 1715644486}
+  cursorController: {fileID: 1136745302}
   itemBoxSize: 3
   fullnessGauge: {fileID: 114189916}
-  playerId: 0
 --- !u!1 &114189914
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,6 +308,7 @@ MonoBehaviour:
   itemController: {fileID: 98408058}
   emotionController: {fileID: 272320215}
   inputModule: {fileID: 1873480241}
+  id: 0
 --- !u!4 &140929103
 Transform:
   m_ObjectHideFlags: 0
@@ -316,15 +317,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 140929101}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -308.25, y: -173, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1362996438}
   - {fileID: 549469670}
   - {fileID: 1401570364}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 300111649}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &191348157
 GameObject:
@@ -831,6 +832,7 @@ MonoBehaviour:
   Relax: {fileID: 11400000, guid: 530c60c5990b8ed45af81aff1b499908, type: 2}
   Anger: {fileID: 11400000, guid: fa621ed987aaaea44b892f0c5cb3d7e5, type: 2}
   Poop: {fileID: 11400000, guid: 9139c911191fa28449e56708f1f35f8b, type: 2}
+  renderTexture: {fileID: 8400000, guid: e43766a6edd847747a38c293fd58b694, type: 2}
 --- !u!114 &272320218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -955,6 +957,10 @@ RectTransform:
   - {fileID: 411984029}
   - {fileID: 2086337524}
   - {fileID: 192756006}
+  - {fileID: 140929103}
+  - {fileID: 1736757672}
+  - {fileID: 1348177073}
+  - {fileID: 1248319483}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1356,9 +1362,9 @@ MonoBehaviour:
   - {fileID: 647331281}
   - {fileID: 411984030}
   - {fileID: 2086337525}
+  cursorController: {fileID: 1136745302}
   itemBoxSize: 3
   fullnessGauge: {fileID: 915265019}
-  playerId: 2
 --- !u!1 &466889657
 GameObject:
   m_ObjectHideFlags: 0
@@ -2342,9 +2348,9 @@ MonoBehaviour:
   - {fileID: 864129633}
   - {fileID: 1318674081}
   - {fileID: 1038801385}
+  cursorController: {fileID: 1136745302}
   itemBoxSize: 3
   fullnessGauge: {fileID: 73951180}
-  playerId: 1
 --- !u!1 &856998567
 GameObject:
   m_ObjectHideFlags: 0
@@ -2713,6 +2719,7 @@ MonoBehaviour:
   Relax: {fileID: 11400000, guid: 530c60c5990b8ed45af81aff1b499908, type: 2}
   Anger: {fileID: 11400000, guid: fa621ed987aaaea44b892f0c5cb3d7e5, type: 2}
   Poop: {fileID: 11400000, guid: 9139c911191fa28449e56708f1f35f8b, type: 2}
+  renderTexture: {fileID: 8400000, guid: 3c24025649863ef448d6512f20881989, type: 2}
 --- !u!114 &1059513981
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2934,8 +2941,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1248319482}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -191.53, y: -104.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2945,7 +2952,7 @@ Transform:
   - {fileID: 216662110}
   - {fileID: 797816551}
   - {fileID: 768051378}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 300111649}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1253002399
 GameObject:
@@ -3019,6 +3026,7 @@ MonoBehaviour:
   Relax: {fileID: 11400000, guid: 530c60c5990b8ed45af81aff1b499908, type: 2}
   Anger: {fileID: 11400000, guid: fa621ed987aaaea44b892f0c5cb3d7e5, type: 2}
   Poop: {fileID: 11400000, guid: 9139c911191fa28449e56708f1f35f8b, type: 2}
+  renderTexture: {fileID: 8400000, guid: 4fbe54e5903c72f4db2f49c6d291bb95, type: 2}
 --- !u!114 &1253002403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3150,15 +3158,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1348177072}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -306.25, y: -173, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 991739769}
   - {fileID: 856998568}
   - {fileID: 328831162}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 300111649}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1348177074
 MonoBehaviour:
@@ -3175,6 +3183,38 @@ MonoBehaviour:
   itemController: {fileID: 426288531}
   emotionController: {fileID: 1059513979}
   inputModule: {fileID: 1804188722}
+  id: 0
+--- !u!1 &1350249891
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1350249892}
+  m_Layer: 0
+  m_Name: RenderTexture
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1350249892
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1350249891}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.9884744, y: 6.1895227, z: -0.15403971}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1362996437
 GameObject:
   m_ObjectHideFlags: 0
@@ -3810,15 +3850,15 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1736757671}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -307.25, y: -173, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 385675475}
   - {fileID: 191348158}
   - {fileID: 835907820}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 300111649}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1736757673
 MonoBehaviour:
@@ -3835,6 +3875,7 @@ MonoBehaviour:
   itemController: {fileID: 847148845}
   emotionController: {fileID: 1253002401}
   inputModule: {fileID: 1794263932}
+  id: 0
 --- !u!1 &1743621175
 GameObject:
   m_ObjectHideFlags: 0
@@ -4494,9 +4535,6 @@ SceneRoots:
   - {fileID: 300111649}
   - {fileID: 250791624}
   - {fileID: 338302406}
-  - {fileID: 140929103}
-  - {fileID: 1736757672}
-  - {fileID: 1348177073}
-  - {fileID: 1248319483}
   - {fileID: 1136745303}
   - {fileID: 1743621177}
+  - {fileID: 1350249892}
