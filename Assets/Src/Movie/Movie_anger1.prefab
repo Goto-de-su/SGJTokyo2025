@@ -126,7 +126,7 @@ MonoBehaviour:
   aspect:
     x: 9
     y: 16
-  scale: 20
+  scale: 14
   rawImage: {fileID: 2640496717607288555}
   renderTex: {fileID: 8400000, guid: e43766a6edd847747a38c293fd58b694, type: 2}
 --- !u!82 &305344952791802760
