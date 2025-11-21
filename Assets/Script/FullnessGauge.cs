@@ -5,24 +5,24 @@ using System.Collections;
 
 public class FullnessGauge : MonoBehaviour
 {
-    [Header("ƒQ[ƒW‚Ìİ’è")]
+    [Header("ï¿½Qï¿½[ï¿½Wï¿½Ìİ’ï¿½")]
     [SerializeField]
-    private GameObject gaugePrefab; // –• ƒQ[ƒW‚ÌƒvƒŒƒnƒu
+    private GameObject gaugePrefab; // ï¿½ï¿½ï¿½ï¿½ï¿½Qï¿½[ï¿½Wï¿½Ìƒvï¿½ï¿½ï¿½nï¿½u
 
-    [Header("”z’u‚Ìİ’è")]
+    [Header("ï¿½zï¿½uï¿½Ìİ’ï¿½")]
     [SerializeField]
-    private int numberOfGauges = 3; // e‚Ì”
+    private int numberOfGauges = 3; // ï¿½eï¿½Ìï¿½
 
     [SerializeField]
-    private float gaugeSpacing = 160f; // ƒQ[ƒW‚ğ”z’u‚·‚éŠÔŠu
+    private float gaugeSpacing = 160f; // ï¿½Qï¿½[ï¿½Wï¿½ï¿½zï¿½uï¿½ï¿½ï¿½ï¿½ÔŠu
 
-    private float full1 = 0.5f;  // ”¼•ª
-    private float full2 = 1.0f;  // 1‘‚¦‚é
+    private float full1 = 0.5f;  // ï¿½ï¿½ï¿½ï¿½
+    private float full2 = 1.0f;  // 1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-    // ---- “à•”ŠÇ——p ----
-    private List<Image> fillImages = new List<Image>(); // q‚ÌFillImage‚¾‚¯‚ğŠi”[
-    private int currentStep = 0; // Œ»İ‚ÌƒtƒBƒ‹ƒXƒeƒbƒv (0 = ‹ó)
-    private int maxSteps; // Å‘åƒXƒeƒbƒv” (ƒQ[ƒW” * 2)
+    // ---- ï¿½ï¿½ï¿½ï¿½ï¿½Ç—ï¿½ï¿½p ----
+    private List<Image> fillImages = new List<Image>(); // ï¿½qï¿½ï¿½FillImageï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½iï¿½[
+    private int currentStep = 0; // ï¿½ï¿½ï¿½İ‚Ìƒtï¿½Bï¿½ï¿½ï¿½Xï¿½eï¿½bï¿½v (0 = ï¿½ï¿½)
+    private int maxSteps; // ï¿½Å‘ï¿½Xï¿½eï¿½bï¿½vï¿½ï¿½ (ï¿½Qï¿½[ï¿½Wï¿½ï¿½ * 2)
 
     private bool isCoolTime = false;
 
@@ -30,16 +30,16 @@ public class FullnessGauge : MonoBehaviour
 
     void Start()
     {
-        // Å‘åƒXƒeƒbƒv”‚ğŒvZ (ƒQ[ƒW1‚Â‚É‚Â‚«2ƒXƒeƒbƒv)
+        // ï¿½Å‘ï¿½Xï¿½eï¿½bï¿½vï¿½ï¿½ï¿½ï¿½ï¿½vï¿½Z (ï¿½Qï¿½[ï¿½W1ï¿½Â‚É‚Â‚ï¿½2ï¿½Xï¿½eï¿½bï¿½v)
         maxSteps = numberOfGauges * 2;
 
-        // ƒQ[ƒW‚ğ¶¬E”z’u
+        // ï¿½Qï¿½[ï¿½Wï¿½ğ¶ï¿½ï¿½Eï¿½zï¿½u
         SpawnGauges();
     }
 
     void SpawnGauges()
     {
-        // (È—ª... Œ³‚ÌƒR[ƒh‚Æ“¯‚¶)
+        // (ï¿½È—ï¿½... ï¿½ï¿½ï¿½ÌƒRï¿½[ï¿½hï¿½Æ“ï¿½ï¿½ï¿½)
         RectTransform containerRect = GetComponent<RectTransform>();
         for (int i = 0; i < numberOfGauges; i++)
         {
@@ -71,21 +71,21 @@ public class FullnessGauge : MonoBehaviour
         }
         else
         {
-            // ƒXƒeƒbƒv‚ği‚ß‚é
+            // ï¿½Xï¿½eï¿½bï¿½vï¿½ï¿½iï¿½ß‚ï¿½
             currentStep += stepsToAdd;
 
             if (currentStep > maxSteps)
             {
-                // Å‘å’l‚ğ’´‚¦‚½ -> ƒŠƒZƒbƒg
+                // ï¿½Å‘ï¿½lï¿½ğ’´‚ï¿½ï¿½ï¿½ -> ï¿½ï¿½ï¿½Zï¿½bï¿½g
                 currentStep = 0;
                 didReset = true;
             }
         }
 
-        // 3. ƒQ[ƒW‚ÌŒ©‚½–Ú‚ğXV (ƒŠƒZƒbƒg‚³‚ê‚Ä‚àA‚³‚ê‚Ä‚È‚­‚Ä‚à)
+        // 3. ï¿½Qï¿½[ï¿½Wï¿½ÌŒï¿½ï¿½ï¿½ï¿½Ú‚ï¿½ï¿½Xï¿½V (ï¿½ï¿½ï¿½Zï¿½bï¿½gï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½Aï¿½ï¿½ï¿½ï¿½Ä‚È‚ï¿½ï¿½Ä‚ï¿½)
         UpdateGaugeVisuals();
 
-        // 4. ‚à‚µƒŠƒZƒbƒg‚ª”­¶‚µ‚Ä‚¢‚½‚çAƒN[ƒ‹ƒ^ƒCƒ€ƒRƒ‹[ƒ`ƒ“‚ğŠJn
+        // 4. ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½bï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½Nï¿½[ï¿½ï¿½ï¿½^ï¿½Cï¿½ï¿½ï¿½Rï¿½ï¿½ï¿½[ï¿½`ï¿½ï¿½ï¿½ï¿½ï¿½Jï¿½n
         if (didReset)
         {
             StartCoroutine(PoopAction());
@@ -94,7 +94,7 @@ public class FullnessGauge : MonoBehaviour
 
     void UpdateGaugeVisuals()
     {
-        // (È—ª... Œ³‚ÌƒR[ƒh‚Æ“¯‚¶)
+        // (ï¿½È—ï¿½... ï¿½ï¿½ï¿½ÌƒRï¿½[ï¿½hï¿½Æ“ï¿½ï¿½ï¿½)
         for (int i = 0; i < fillImages.Count; i++)
         {
             Image gaugeImage = fillImages[i];
@@ -117,19 +117,19 @@ public class FullnessGauge : MonoBehaviour
 
     private IEnumerator PoopAction()
     {
-        // 1. ƒN[ƒ‹ƒ^ƒCƒ€ŠJniƒtƒ‰ƒO‚ğ—§‚Ä‚éj
+        // 1. ï¿½Nï¿½[ï¿½ï¿½ï¿½^ï¿½Cï¿½ï¿½ï¿½Jï¿½nï¿½iï¿½tï¿½ï¿½ï¿½Oï¿½ğ—§‚Ä‚ï¿½j
         isCoolTime = true;
 
         emotionControler.Full();
 
-        Debug.Log("‚¤‚ñ‚¿iƒN[ƒ‹ƒ^ƒCƒ€ŠJnj");
+        Debug.Log("ï¿½ï¿½ï¿½ñ‚¿iï¿½Nï¿½[ï¿½ï¿½ï¿½^ï¿½Cï¿½ï¿½ï¿½Jï¿½nï¿½j");
 
-        // 2. 3•b‘Ò‚Â
+        // 2. 3ï¿½bï¿½Ò‚ï¿½
         yield return new WaitForSeconds(3.0f);
 
-        // 3. ƒN[ƒ‹ƒ^ƒCƒ€I—¹iƒtƒ‰ƒO‚ğ‰º‚ë‚·j
+        // 3. ï¿½Nï¿½[ï¿½ï¿½ï¿½^ï¿½Cï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½iï¿½tï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½ï¿½ï¿½ë‚·ï¿½j
         isCoolTime = false;
-        Debug.Log("ƒN[ƒ‹ƒ^ƒCƒ€I—¹");
+        Debug.Log("ï¿½Nï¿½[ï¿½ï¿½ï¿½^ï¿½Cï¿½ï¿½ï¿½Iï¿½ï¿½");
 
     }
 }

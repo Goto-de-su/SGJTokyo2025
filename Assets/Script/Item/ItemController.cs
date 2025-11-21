@@ -8,22 +8,19 @@ public class ItemController : MonoBehaviour
     [SerializeField] private InputModule inputModel;
 
     [Header("View")]
-    [Tooltip("ƒAƒCƒeƒ€•¦ƒXƒƒbƒgi¶‚©‚ç‡‚É3‚Âİ’èj")]
+    [Tooltip("ï¿½Aï¿½Cï¿½eï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½bï¿½gï¿½iï¿½ï¿½ï¿½ï¿½ï¿½ç‡ï¿½ï¿½3ï¿½Âİ’ï¿½j")]
     [SerializeField] private List<ItemBoxDisplay> itemBoxDisplays;
 
     [Header("Controller")]
     [SerializeField] private CursorController cursorController;
 
     [Header("Settings")]
-    [Tooltip("ƒAƒCƒeƒ€‚ÌŠ˜g‚Ì”")]
+    [Tooltip("ï¿½Aï¿½Cï¿½eï¿½ï¿½ï¿½Ìï¿½ï¿½ï¿½ï¿½gï¿½Ìï¿½")]
     [SerializeField] private int itemBoxSize = 3;
-
-    [Header("Gauges")]
-    [SerializeField] private FullnessGauge fullnessGauge;
 
     private int playerId;
 
-    // Œ»İŠ‚µ‚Ä‚¢‚éƒAƒCƒeƒ€‚ÌƒLƒ…[iƒŠƒXƒgj
+    // ï¿½ï¿½ï¿½İï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½ï¿½Aï¿½Cï¿½eï¿½ï¿½ï¿½ÌƒLï¿½ï¿½ï¿½[ï¿½iï¿½ï¿½ï¿½Xï¿½gï¿½j
     private List<ItemData> currentItems = new List<ItemData>();
 
     public void SetPlayerId(int id)
@@ -34,101 +31,79 @@ public class ItemController : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒAƒCƒeƒ€‚ÌŒø‰Êæ
+    /// ï¿½Aï¿½Cï¿½eï¿½ï¿½ï¿½ÌŒï¿½ï¿½Êï¿½
     /// </summary>
     private int selectedPlayer;
 
     private void Start()
     {
-        // ƒQ[ƒ€ŠJn‚ÉŠ˜g‚Ì”‚¾‚¯ƒAƒCƒeƒ€‚ğ‰Šú‰»
+        // ï¿½Qï¿½[ï¿½ï¿½ï¿½Jï¿½nï¿½ï¿½ï¿½Éï¿½ï¿½ï¿½ï¿½gï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½Cï¿½eï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         InitializeItemBox();
         //cursorController.UpdateCursor(0, this.selectedPlayer);
     }
 
     //private void Update()
     //{
-    //    Debug.Log("‘€ìƒvƒŒƒCƒ„[:" + playerId + ", ‘I‘ğƒvƒŒƒCƒ„[:" + selectedPlayer);
+    //    Debug.Log("ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[:" + playerId + ", ï¿½Iï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[:" + selectedPlayer);
     //}
 
     private void OnEnable()
     {
-        // (È—ª... InputModule‚Ìw“Ç‚Í‚»‚Ì‚Ü‚Ü)
+        // (ï¿½È—ï¿½... InputModuleï¿½Ìwï¿½Ç‚Í‚ï¿½ï¿½Ì‚Ü‚ï¿½)
         inputModel.OnOKPressed += UseItem;
         inputModel.OnNGPressed += ClearItem;
-        // ‚È‚º‚©”½“]‚µ‚Ä‚¢‚é‚½‚ßA”½“]
+        // ï¿½È‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½é‚½ï¿½ßAï¿½ï¿½ï¿½]
         inputModel.OnRightPressed += SelectLeft;
         inputModel.OnLeftPressed += SelectRight;
     }
 
     private void OnDisable()
     {
-        // (È—ª... w“Ç‰ğœ‚Í‚»‚Ì‚Ü‚Ü)
+        // (ï¿½È—ï¿½... ï¿½wï¿½Ç‰ï¿½ï¿½ï¿½ï¿½Í‚ï¿½ï¿½Ì‚Ü‚ï¿½)
         inputModel.OnOKPressed -= UseItem;
         inputModel.OnNGPressed -= ClearItem;
-        // ‚È‚º‚©”½“]‚µ‚Ä‚¢‚é‚½‚ßA”½“]
+        // ï¿½È‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½]ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½é‚½ï¿½ßAï¿½ï¿½ï¿½]
         inputModel.OnRightPressed += SelectLeft;
         inputModel.OnLeftPressed += SelectRight;
     }
 
     /// <summary>
-    /// Å‰‚ÉƒAƒCƒeƒ€ƒ{ƒbƒNƒX‚ğ–„‚ß‚é
+    /// ï¿½Åï¿½ï¿½ÉƒAï¿½Cï¿½eï¿½ï¿½ï¿½{ï¿½bï¿½Nï¿½Xï¿½ğ–„‚ß‚ï¿½
     /// </summary>
     private void InitializeItemBox()
     {
         currentItems.Clear();
         for (int i = 0; i < itemBoxSize; i++)
         {
-            // V‚µ‚¢ƒAƒCƒeƒ€‚ğ’Š‘I‚µ‚ÄƒŠƒXƒg‚ÌuÅŒãv‚É’Ç‰Á
+            // ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½Cï¿½eï¿½ï¿½ï¿½ğ’Š‘Iï¿½ï¿½ï¿½Äƒï¿½ï¿½Xï¿½gï¿½Ìuï¿½ÅŒï¿½vï¿½É’Ç‰ï¿½
             currentItems.Add(itemModel.GetRandomItem());
         }
 
-        // UI‚ğXV
+        // UIï¿½ï¿½ï¿½Xï¿½V
         UpdateAllDisplays();
     }
 
     /// <summary>
-    /// ˆê”Ô¶‚ÌƒAƒCƒeƒ€‚ğg—p
+    /// ï¿½ï¿½Ôï¿½ï¿½ÌƒAï¿½Cï¿½eï¿½ï¿½ï¿½ï¿½ï¿½gï¿½p
     /// </summary>
     [System.Obsolete]
     public void UseItem()
     {
         if (currentItems.Count == 0) return;
 
-        // 1. g—p‚·‚éƒAƒCƒeƒ€‚Ìƒf[ƒ^‚ğæ“¾
+        // 1. ï¿½gï¿½pï¿½ï¿½ï¿½ï¿½Aï¿½Cï¿½eï¿½ï¿½ï¿½Ìƒfï¿½[ï¿½^ï¿½ï¿½ï¿½æ“¾
         ItemData itemToUse = currentItems[0];
 
-        // 2. ÀÛ‚ÌƒAƒCƒeƒ€g—pƒƒWƒbƒN‚ğŒÄ‚Ô (EmotionController‚È‚Ç)
+        // 2. ï¿½ï¿½ï¿½Û‚ÌƒAï¿½Cï¿½eï¿½ï¿½ï¿½gï¿½pï¿½ï¿½ï¿½Wï¿½bï¿½Nï¿½ï¿½ï¿½Ä‚ï¿½ (EmotionControllerï¿½È‚ï¿½)
         itemModel.UseItem(itemToUse, selectedPlayer);
 
-        // 3. –• ƒQ[ƒW‚ğ‘‚â‚·ˆ— (ClearItem‚©‚çˆÚ“®)
-        if (itemToUse != null)
-        {
-            int value = itemToUse.foodValue;
-
-            if (value == 1)
-            {
-                if (fullnessGauge != null)
-                {
-                    fullnessGauge.IncrementSteps(1);
-                }
-            }
-
-            if (value == 2)
-            {
-                if (fullnessGauge != null)
-                {
-                    fullnessGauge.IncrementSteps(2);
-                }
-            }
-        }
-
-        // 4. ƒAƒCƒeƒ€‚ğ•ÏXi¶‹l‚ß••â[j
+        // 4. ï¿½Aï¿½Cï¿½eï¿½ï¿½ï¿½ï¿½ÏXï¿½iï¿½ï¿½ï¿½lï¿½ßï¿½ï¿½ï¿½[ï¿½j
         this.ChangeItem();
     }
 
 
     /// <summary>
-    /// ƒAƒCƒeƒ€‚ğg—p‚¹‚¸ƒXƒLƒbƒviˆê”Ô¶‚ğ”jŠüj
+    /// ï¿½Aï¿½Cï¿½eï¿½ï¿½ï¿½ï¿½ï¿½gï¿½pï¿½ï¿½ï¿½ï¿½ï¿½Xï¿½Lï¿½bï¿½vï¿½iï¿½ï¿½Ôï¿½ï¿½ï¿½jï¿½ï¿½ï¿½j
     /// </summary>
     public void ClearItem()
     {
@@ -139,91 +114,91 @@ public class ItemController : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒAƒCƒeƒ€•ÏXi¶‹l‚ß‚É‚µ‚ÄAˆê”Ô‰E‚É•â[j
+    /// ï¿½Aï¿½Cï¿½eï¿½ï¿½ï¿½ÏXï¿½iï¿½ï¿½ï¿½lï¿½ß‚É‚ï¿½ï¿½ÄAï¿½ï¿½Ô‰Eï¿½É•ï¿½[ï¿½j
     /// </summary>
     public void ChangeItem()
     {
         if (currentItems.Count == 0)
         {
-            // ‚à‚µ‹ó‚È‚çA‰Šú‰»‚ğ‚İ‚é
+            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È‚ï¿½Aï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½İ‚ï¿½
             InitializeItemBox();
             return;
         }
 
-        // 1. ˆê”Ô¶(ƒCƒ“ƒfƒbƒNƒX0)‚ÌƒAƒCƒeƒ€‚ğíœ
-        //    -> ‚±‚ê‚Å©“®“I‚ÉƒŠƒXƒg‚ª¶‹l‚ß‚³‚ê‚Ü‚·
+        // 1. ï¿½ï¿½Ôï¿½(ï¿½Cï¿½ï¿½ï¿½fï¿½bï¿½Nï¿½X0)ï¿½ÌƒAï¿½Cï¿½eï¿½ï¿½ï¿½ï¿½ï¿½íœ
+        //    -> ï¿½ï¿½ï¿½ï¿½Åï¿½ï¿½ï¿½ï¿½Iï¿½Éƒï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½ï¿½ï¿½lï¿½ß‚ï¿½ï¿½ï¿½Ü‚ï¿½
         currentItems.RemoveAt(0);
 
-        // 2. V‚µ‚¢ƒAƒCƒeƒ€‚ğ’Š‘I‚µ‚ÄƒŠƒXƒg‚ÌuÅŒãv‚É’Ç‰Á
+        // 2. ï¿½Vï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½Cï¿½eï¿½ï¿½ï¿½ğ’Š‘Iï¿½ï¿½ï¿½Äƒï¿½ï¿½Xï¿½gï¿½Ìuï¿½ÅŒï¿½vï¿½É’Ç‰ï¿½
         currentItems.Add(itemModel.GetRandomItem());
 
-        // 3. UI‚Ì•\¦‚ğ‚·‚×‚ÄXV
+        // 3. UIï¿½Ì•\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×‚ÄXï¿½V
         UpdateAllDisplays();
     }
 
     /// <summary>
-    /// currentItemsƒŠƒXƒg‚Ì“à—e‚ğA‚·‚×‚Ä‚ÌUIƒXƒƒbƒg‚É”½‰f
+    /// currentItemsï¿½ï¿½ï¿½Xï¿½gï¿½Ì“ï¿½ï¿½eï¿½ï¿½ï¿½Aï¿½ï¿½ï¿½×‚Ä‚ï¿½UIï¿½Xï¿½ï¿½ï¿½bï¿½gï¿½É”ï¿½ï¿½f
     /// </summary>
     private void UpdateAllDisplays()
     {
-        // 3‚Â‚Ì•\¦ƒXƒƒbƒg‚ğ‡”Ô‚Éˆ—
+        // 3ï¿½Â‚Ì•\ï¿½ï¿½ï¿½Xï¿½ï¿½ï¿½bï¿½gï¿½ï¿½ï¿½ï¿½ï¿½Ô‚Éï¿½ï¿½ï¿½
         for (int i = 0; i < itemBoxDisplays.Count; i++)
         {
-            // currentItems‚É•\¦‚·‚×‚«ƒAƒCƒeƒ€‚ª‚ ‚é‚©H
+            // currentItemsï¿½É•\ï¿½ï¿½ï¿½ï¿½ï¿½×‚ï¿½ï¿½Aï¿½Cï¿½eï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é‚©ï¿½H
             if (i < currentItems.Count)
             {
-                // ‚ ‚ê‚Î•\¦
+                // ï¿½ï¿½ï¿½ï¿½Î•\ï¿½ï¿½
                 itemBoxDisplays[i].DisplayItem(currentItems[i]);
             }
             else
             {
-                // ‚È‚¯‚ê‚ÎƒNƒŠƒA
+                // ï¿½È‚ï¿½ï¿½ï¿½ÎƒNï¿½ï¿½ï¿½A
                 itemBoxDisplays[i].ClearDisplay();
             }
         }
     }
 
     /// <summary>
-    /// ƒAƒCƒeƒ€g—pæ‚ÌƒJ[ƒ\ƒ‹§Œä(‰E)
+    /// ï¿½Aï¿½Cï¿½eï¿½ï¿½ï¿½gï¿½pï¿½ï¿½ÌƒJï¿½[ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½E)
     /// </summary>
     private void SelectRight()
     {
-        Debug.Log("•ÏX‘O");
-        Debug.Log("‘€ìƒvƒŒƒCƒ„[:" + playerId + ", ‘I‘ğƒvƒŒƒCƒ„[:" + selectedPlayer);
+        Debug.Log("ï¿½ÏXï¿½O");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[:" + playerId + ", ï¿½Iï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[:" + selectedPlayer);
         selectedPlayer++;
-        Debug.Log("ŒvZŒã");
-        Debug.Log("‘€ìƒvƒŒƒCƒ„[:" + playerId + ", ‘I‘ğƒvƒŒƒCƒ„[:" + selectedPlayer);
+        Debug.Log("ï¿½vï¿½Zï¿½ï¿½");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[:" + playerId + ", ï¿½Iï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[:" + selectedPlayer);
         if (selectedPlayer > 2)
         {
             selectedPlayer = 0;
         }
-        Debug.Log("•ÏXŒã");
-        Debug.Log("‘€ìƒvƒŒƒCƒ„[:" + playerId + ", ‘I‘ğƒvƒŒƒCƒ„[:" + selectedPlayer);
+        Debug.Log("ï¿½ÏXï¿½ï¿½");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[:" + playerId + ", ï¿½Iï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[:" + selectedPlayer);
         DisplayCursor(selectedPlayer, playerId);
     }
 
     /// <summary>
-    /// ƒAƒCƒeƒ€g—pæ‚ÌƒJ[ƒ\ƒ‹§Œä(¶)
+    /// ï¿½Aï¿½Cï¿½eï¿½ï¿½ï¿½gï¿½pï¿½ï¿½ÌƒJï¿½[ï¿½\ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(ï¿½ï¿½)
     /// </summary>
     private void SelectLeft()
     {
-        Debug.Log("•ÏX‘O");
-        Debug.Log("‘€ìƒvƒŒƒCƒ„[:" + playerId + ", ‘I‘ğƒvƒŒƒCƒ„[:" + selectedPlayer);
+        Debug.Log("ï¿½ÏXï¿½O");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[:" + playerId + ", ï¿½Iï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[:" + selectedPlayer);
         selectedPlayer--;
-        Debug.Log("ŒvZŒã");
-        Debug.Log("‘€ìƒvƒŒƒCƒ„[:" + playerId + ", ‘I‘ğƒvƒŒƒCƒ„[:" + selectedPlayer);
+        Debug.Log("ï¿½vï¿½Zï¿½ï¿½");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[:" + playerId + ", ï¿½Iï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[:" + selectedPlayer);
         if (selectedPlayer < 0)
         {
             selectedPlayer = 2;
         }
-        Debug.Log("•ÏXŒã");
-        Debug.Log("‘€ìƒvƒŒƒCƒ„[:" + playerId + ", ‘I‘ğƒvƒŒƒCƒ„[:" + selectedPlayer);
+        Debug.Log("ï¿½ÏXï¿½ï¿½");
+        Debug.Log("ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[:" + playerId + ", ï¿½Iï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[:" + selectedPlayer);
         DisplayCursor(selectedPlayer, playerId);
     }
 
     private void DisplayCursor(int target, int me)
     {
-        //Debug.Log("‘€ìƒvƒŒƒCƒ„[:" + playerId + ", ‘I‘ğƒvƒŒƒCƒ„[:" + selectedPlayer);
+        //Debug.Log("ï¿½ï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[:" + playerId + ", ï¿½Iï¿½ï¿½ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[:" + selectedPlayer);
         cursorController.UpdateCursor(target, me);
     }
 }

@@ -3,24 +3,24 @@ using System.Collections.Generic;
 
 public class ItemModel : MonoBehaviour
 {
-    [Tooltip("’Š‘I‚·‚éƒf[ƒ^")]
+    [Tooltip("ï¿½ï¿½ï¿½Iï¿½ï¿½ï¿½ï¿½fï¿½[ï¿½^")]
     [SerializeField] private List<ItemData> srcData;
 
     public ItemData GetRandomItem()
     {
-        // ƒf[ƒ^‚ªŠi”[‚³‚ê‚Ä‚¢‚È‚¢ê‡‚Ínull‚ğ•Ô‚·
+        // ï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½iï¿½[ï¿½ï¿½ï¿½ï¿½Ä‚ï¿½ï¿½È‚ï¿½ï¿½ê‡ï¿½ï¿½nullï¿½ï¿½Ô‚ï¿½
         if (this.srcData.Count == 0)
         {
             return null;
         }
 
-        // —”‚Å¶¬‚µ‚½ƒAƒCƒeƒ€‚ğ•Ô‚·
+        // ï¿½ï¿½ï¿½ï¿½ï¿½Åï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Aï¿½Cï¿½eï¿½ï¿½ï¿½ï¿½Ô‚ï¿½
         int randomIndex = Random.Range(0, this.srcData.Count);
         return srcData[randomIndex];
     }
 
     /// <summary>
-    /// ƒAƒCƒeƒ€‚ğg—p (ÀÛ‚ÌŒø‰Ê‚ğ‚±‚±‚É‘‚­)
+    /// ï¿½Aï¿½Cï¿½eï¿½ï¿½ï¿½ï¿½ï¿½gï¿½p (ï¿½ï¿½ï¿½Û‚ÌŒï¿½ï¿½Ê‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Éï¿½ï¿½ï¿½)
     /// </summary>
     [System.Obsolete]
     public void UseItem(ItemData itemToUse, int playerId)
@@ -28,5 +28,23 @@ public class ItemModel : MonoBehaviour
         GameManager gameManager = GameManager.Instance;
         gameManager.Players[playerId].EmotionController.UpdateEmotion(itemToUse.motivationValue);
 
+        // æº€è…¹ã‚²ãƒ¼ã‚¸
+        int value = itemToUse.foodValue;
+
+        if (value == 1)
+        {
+            if (gameManager.Players[playerId].FullnessGauge != null)
+            {
+                gameManager.Players[playerId].FullnessGauge.IncrementSteps(1);
+            }
+        }
+
+        if (value == 2)
+        {
+            if (gameManager.Players[playerId].FullnessGauge != null)
+            {
+                gameManager.Players[playerId].FullnessGauge.IncrementSteps(2);
+            }
+        }
     }
 }

@@ -2,22 +2,27 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    [Header("ƒAƒCƒeƒ€")]
+    [Header("ï¿½Aï¿½Cï¿½eï¿½ï¿½")]
     [SerializeField] private ItemController itemController;
-    [Header("ƒTƒ‹")]
+    [Header("ï¿½Tï¿½ï¿½")]
     [SerializeField] private EmotionControler emotionController;
-    [Header("ƒRƒ“ƒgƒ[ƒ‰[")]
+    [Header("ï¿½Rï¿½ï¿½ï¿½gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½[")]
     [SerializeField] private InputModule inputModule;
+
+    [Header("Gauges")]
+    [SerializeField] private FullnessGauge fullnessGauge;
 
 
     public ItemController ItemController => itemController;
 
     public EmotionControler EmotionController => emotionController;
 
+    public FullnessGauge FullnessGauge => fullnessGauge;
+
     /// <summary>
-    /// ƒvƒŒƒCƒ„[”Ô†
+    /// ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ï¿½Ôï¿½
     /// </summary>
-    [Header("ƒvƒŒƒCƒ„[ID")]
+    [Header("ï¿½vï¿½ï¿½ï¿½Cï¿½ï¿½ï¿½[ID")]
     [SerializeField] private int id;
 
     public PlayerController(int number)
