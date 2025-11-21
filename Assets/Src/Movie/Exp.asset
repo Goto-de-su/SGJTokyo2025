@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Exp
   m_EditorClassIdentifier: 
   screen:
-  - {fileID: 1017125246790190434, guid: 338022af9c81e0848b31a06d62b8512c, type: 3}
-  - {fileID: 8311339392309494208, guid: 293f31bb8e9f4254e94551f2acbed895, type: 3}
+  - {fileID: 32900000, guid: a2f56e5c5f4389742839492dd95acb5d, type: 3}
+  - {fileID: 32900000, guid: de29edadc11a62843a038f19e54be77d, type: 3}

@@ -4,9 +4,9 @@ using UnityEngine.Video;
 [CreateAssetMenu(fileName = "MoviePool", menuName = "Scriptable Objects/MoviePool")]
 public class MoviePool : ScriptableObject
 {
-    [SerializeField] private GameObject[] screen;
+    [SerializeField] private VideoClip[] screen;
 
-    public GameObject GetClip()
+    public VideoClip GetClip()
     {
         if (screen.Length == 0)
         {

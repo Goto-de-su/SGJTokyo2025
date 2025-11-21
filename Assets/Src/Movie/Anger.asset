@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Anger
   m_EditorClassIdentifier: 
   screen:
-  - {fileID: 7451844313821047737, guid: 7632d30cf714b5349905f5a8ad50e59e, type: 3}
-  - {fileID: 4020306398503224265, guid: e0998827153fb1943b57045847301166, type: 3}
-  - {fileID: 4847662125086831461, guid: 810152f2ba0146a4bb1efdc418c15af4, type: 3}
+  - {fileID: 32900000, guid: 544ce594cfbb752479b588c941b954e6, type: 3}
+  - {fileID: 32900000, guid: 72748f8d520c4934cafe4e601b8f4cdc, type: 3}
+  - {fileID: 32900000, guid: 09201ebd45f876c4290ae6e09090bef4, type: 3}

@@ -6,6 +6,7 @@ using UnityEngine.Video;
 public class MovieChanger : MonoBehaviour
 {
     [SerializeField] private EmotionControler emotion_controler;
+    [SerializeField] private VideoPlayer videoPlayer;
     private GameObject current_movie;
     public Action OnChange;
     public Action OnLoop;
@@ -16,8 +17,6 @@ public class MovieChanger : MonoBehaviour
     [SerializeField] private MoviePool Anger;
     [SerializeField] private MoviePool Poop;
 
-    [SerializeField] private RenderTexture renderTexture;
-
     private void Start()
     {
         ChangeMovie();
@@ -25,17 +24,14 @@ public class MovieChanger : MonoBehaviour
 
     public void ChangeMovie()
     {
-        GameObject newClip = GetMovieClip(emotion_controler.GetEmotion()).gameObject;
-        if (current_movie != null)
-        Destroy(current_movie);
-        current_movie = Instantiate(newClip, transform.position, Quaternion.identity, transform.parent);
-        current_movie.GetComponent<VideoPlayer>().loopPointReached += OnMovieEnd;
-        current_movie.GetComponent<VideoPlayer>().targetTexture = renderTexture;
+        VideoClip newClip = GetMovieClip(emotion_controler.GetEmotion());        
+        videoPlayer.clip = newClip;
+        videoPlayer.loopPointReached += OnMovieEnd;
         OnChange?.Invoke();
     }
 
 
-    private GameObject GetMovieClip(EMOTION emo)
+    private VideoClip GetMovieClip(EMOTION emo)
     {
         switch (emo)
         {
