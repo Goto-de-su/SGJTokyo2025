@@ -6,6 +6,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private List<PlayerController> players;
     public List<PlayerController> Players => players;
 
+    [SerializeField] private int winScore;
+    public int WinScore => winScore;
+
     /// <summary>
     /// シングルトンの実装
     /// </summary>
@@ -32,24 +35,6 @@ public class GameManager : MonoBehaviour
             }
             return _instance;
         }
-    }
-    private void Awake()
-    {
-        // すでにインスタンスが存在し、それが自分自身でない場合、自身を破棄する
-        // これにより、シーンをまたいで複数生成されるのを防ぐ
-        if (_instance != null && _instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        // 自身を静的インスタンスとして設定する
-        _instance = this;
-
-        // シーンがロードされてもこのGameObjectを破棄しないように設定する
-        // 必要に応じてこの行をコメントアウトしても構いませんが、
-        // 多くのシングルトンManagerはシーンをまたいで永続化されます。
-        DontDestroyOnLoad(gameObject);
     }
 
     // 必要に応じて、以下のOnDestroyメソッドを追加し、

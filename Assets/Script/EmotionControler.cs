@@ -23,6 +23,8 @@ public class EmotionControler : MonoBehaviour
     [SerializeField] public MovieChanger movie_changer;
     [SerializeField] public StreakController streak_controller;
 
+    [SerializeField] public MotivationGauge motivationGauge;
+
     [SerializeField] public GameObject poopObject;
 
 
@@ -43,11 +45,20 @@ public class EmotionControler : MonoBehaviour
         this.poopObject.SetActive(false);
     }
 
+    //private void Update()
+    //{
+    //    Debug.Log("モチベーション：" + motivaion);
+    //}
+
     public EMOTION GetEmotion() { return emotion; }
     public Emotion_StateMachine GetStateMachine() { return state; }
     public void SetEmotion(EMOTION emo) { emotion = emo; }
     public int GetMotivaion() { return motivaion; }
-    public void UpdateMotivation(int amount) { motivaion += amount; }
+    public void UpdateMotivation(int amount)
+    { 
+        motivaion += amount;
+        motivationGauge.DisplayGauge(motivaion);
+    }
 
     public void UpdateEmotion(int amount)
     {
