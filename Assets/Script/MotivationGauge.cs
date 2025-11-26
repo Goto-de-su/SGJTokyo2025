@@ -19,8 +19,6 @@ public class MotivationGauge : MonoBehaviour
             valueGauge = value;
         }
 
-        Debug.Log("Value " + value);
-
         gauge.fillAmount = (float)value / maxGauge;
     }
 }

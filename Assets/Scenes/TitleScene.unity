@@ -877,7 +877,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4fde1b813a70db4aaf999c995a6e1c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameSceneName: TenruTimer
+  gameSceneName: Goto
 --- !u!114 &567166318
 MonoBehaviour:
   m_ObjectHideFlags: 0
